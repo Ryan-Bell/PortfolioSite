@@ -73,27 +73,51 @@ nav a:hover {
 	padding-bottom: 30px;	
 }
 #links #linksContainer{
-	width:60%;
+	width:50%;
 	margin: auto;
 }
+#row1 {
+	width: 100%;
+	clear: right;
+	padding-top: 90px;
+	padding-bottom: 40px;
+}
+#row2 {
+	width: 100%;
+}
 #links #headshot {
-	
+	width: 30%;
+	float: left;
 }
 #links #basicinfo {
-	
+	width: 100%;
 }
-#links #email{
-	
+#links #basiccontact {
+	margin: auto;
+	text-align: center;
 }
-#links #email a{
+#links #basiccontact p{
 	text-decoration: none;
 	color: #fff;
+	padding: 5px;
+	display: inline;
 }
-#links #socialMedia{
-	
+#links #basiccontact a {
+	border-right:  solid #fff;
+	text-decoration: none;
+	color: #fff;
+	padding-right: 13px;
 }
-#links #call{
-	
+#links #socialMedia {
+	margin: auto;
+	text-align: center;
+	padding-bottom: 25px;
+}
+#links #socialMedia ul{
+	list-style: none;
+}
+#links #socialMedia li {
+	display: inline;
 }
 /*The following is styles for the footer*/
 footer {
