@@ -17,6 +17,8 @@ nav {
 	background-color: #111;
 	width: 100%;
 	margin: 0px;
+	width: 60%;
+	margin: auto;
 }
 nav ul {
 	list-style: none;
@@ -58,4 +60,49 @@ nav a:hover {
 }
 #introduction h1{
 	margin-top: 0px;
+	font-size: 24pt;
+}
+#introduction p { 
+	color: #bbb;
+}
+/*The following is styles for the links section */
+#links {
+	background-color: #111;
+	color: #fff;
+	margin: auto;
+	padding-bottom: 30px;	
+}
+#links #linksContainer{
+	width:60%;
+	margin: auto;
+}
+#links #headshot {
+	
+}
+#links #basicinfo {
+	
+}
+#links #email{
+	
+}
+#links #email a{
+	text-decoration: none;
+	color: #fff;
+}
+#links #socialMedia{
+	
+}
+#links #call{
+	
+}
+/*The following is styles for the footer*/
+footer {
+	background-color: #111;
+	color: #ccc;
+	text-align: center;
+	font-size: 8pt;
+	padding: 24px;
+} 
+.circlePicture {
+	border-radius: 90px;
 }
