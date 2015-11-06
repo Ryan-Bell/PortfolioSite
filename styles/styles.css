@@ -17,8 +17,6 @@ nav {
 	background-color: #111;
 	width: 100%;
 	margin: 0px;
-	width: 60%;
-	margin: auto;
 }
 nav ul {
 	list-style: none;
@@ -73,7 +71,7 @@ nav a:hover {
 	padding-bottom: 30px;	
 }
 #links #linksContainer{
-	width:50%;
+	width:60%;
 	margin: auto;
 }
 #row1 {
@@ -86,12 +84,15 @@ nav a:hover {
 	width: 100%;
 }
 #links #headshot {
-	width: 30%;
+	width: 180px;
 	float: left;
 }
 #links #basicinfo {
-	width: 100%;
+	width: 70%;
+	float: right;
+	padding-left: 20px;
 }
+/*
 #links #basiccontact {
 	margin: auto;
 	text-align: center;
@@ -107,7 +108,7 @@ nav a:hover {
 	text-decoration: none;
 	color: #fff;
 	padding-right: 13px;
-}
+}*/
 #links #socialMedia {
 	margin: auto;
 	text-align: center;
@@ -130,24 +131,25 @@ footer {
 .circlePicture {
 	border-radius: 90px;
 }
-.sampleItem {
+/* The following is styles for the sample work section*/
+#samplework {
 	width: 80%;
-	height: 500px;
 	margin: auto;
-	/*background-image: url(../media/JustDoIt.jpg);
-	background-size: contain;
+}
+.sampleItem {
+	height: 500px;
+	background-image: url(../media/JustDoIt.jpg);
+	background-size: cover;
 	background-repeat: no-repeat;
-	background-position: center top;*/
+	background-position: center top;
 }
 .portfolioPieceInfo {
-	width: 100%;
-	height: 100%;
 	text-align: center;
+	height: 100%;
 }
 .portfolioPieceInfo img {
-	max-width: 100%;
-	max-height: auto;
-	display: block;
+	width: 100%;
+	height: 500px;
 }
 .portfolioPieceInfo h3 {
 	margin-top: 0px;
