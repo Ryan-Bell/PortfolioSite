@@ -79,6 +79,7 @@ nav a:hover {
 	clear: right;
 	padding-top: 90px;
 	padding-bottom: 40px;
+	height: 120px;
 }
 #row2 {
 	width: 100%;
@@ -136,9 +137,23 @@ footer {
 	width: 80%;
 	margin: auto;
 }
-.sampleItem {
+.sampleItem1 {
 	height: 500px;
-	background-image: url(../media/JustDoIt.jpg);
+	background-image: url(../media/FinalShading.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+.sampleItem2 {
+	height: 500px;
+	background-image: url(../media/ChromeLvl5.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+.sampleItem3 {
+	height: 500px;
+	background-image: url(../media/Minion4kReference.png);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center top;
