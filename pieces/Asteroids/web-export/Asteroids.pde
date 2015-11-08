@@ -201,7 +201,8 @@ class Bullet{
   //applicabel variables. This method of reusing objects and limiting object instantiation was implemented in an 
   //effort to increase the performance of the game. 
   void reset(PVector pos, PVector spe, float direct){
-    bulletPosition = new PVector(pos.x + (20 * cos(radians(direct) - PI/2)), pos.y + (20 * sin(radians(direct) - PI/2)));
+    //bulletPosition = new PVector(pos.x + (20 * cos(radians(direct) - PI/2)), pos.y + (20 * sin(radians(direct) - PI/2)));
+    bulletPosition = new PVector(pos.x, pos.y);
     bulletVelocity.x = bulletSpeed * cos(radians(direct) - PI/2) + spe.x;
     bulletVelocity.y = bulletSpeed * sin(radians(direct) - PI/2) + spe.y;
     bulletCreationTime =  millis();
@@ -231,6 +232,7 @@ class Ship{
     shipDelayTime = 300;
     keys = new boolean[5];
     shipShape = loadShape("ship.svg");
+    shapeMode(CENTER);
   }
   
   //Handles the drawing of the ship by first updating the physics, then resetting it back to 0,0 with no rotation or scaling
@@ -240,7 +242,7 @@ class Ship{
     updateShip();
     shipShape.resetMatrix();
     shipShape.rotate(radians(shipDirection));
-    shape(shipShape, shipPosition.x, shipPosition.y, 10,10);
+    shape(shipShape, shipPosition.x-7.5*cos(radians(shipDirection + PI/2)), shipPosition.y-10*sin(radians(shipDirection + PI/2)), 15,20);
   }
   
   // Stops the drawing loop and prints a simple message to the screen saying that the player has lost.

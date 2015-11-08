@@ -49,7 +49,8 @@ class Bullet{
   //applicabel variables. This method of reusing objects and limiting object instantiation was implemented in an 
   //effort to increase the performance of the game. 
   void reset(PVector pos, PVector spe, float direct){
-    bulletPosition = new PVector(pos.x + (20 * cos(radians(direct) - PI/2)), pos.y + (20 * sin(radians(direct) - PI/2)));
+    //bulletPosition = new PVector(pos.x + (20 * cos(radians(direct) - PI/2)), pos.y + (20 * sin(radians(direct) - PI/2)));
+    bulletPosition = new PVector(pos.x, pos.y);
     bulletVelocity.x = bulletSpeed * cos(radians(direct) - PI/2) + spe.x;
     bulletVelocity.y = bulletSpeed * sin(radians(direct) - PI/2) + spe.y;
     bulletCreationTime =  millis();

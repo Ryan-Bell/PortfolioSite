@@ -21,6 +21,7 @@ class Ship{
     shipDelayTime = 300;
     keys = new boolean[5];
     shipShape = loadShape("ship.svg");
+    shapeMode(CENTER);
   }
   
   //Handles the drawing of the ship by first updating the physics, then resetting it back to 0,0 with no rotation or scaling
@@ -30,7 +31,7 @@ class Ship{
     updateShip();
     shipShape.resetMatrix();
     shipShape.rotate(radians(shipDirection));
-    shape(shipShape, shipPosition.x, shipPosition.y, 10,10);
+    shape(shipShape, shipPosition.x-7.5*cos(radians(shipDirection + PI/2)), shipPosition.y-10*sin(radians(shipDirection + PI/2)), 15,20);
   }
   
   // Stops the drawing loop and prints a simple message to the screen saying that the player has lost.
