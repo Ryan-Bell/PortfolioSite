@@ -169,3 +169,16 @@ footer {
 .portfolioPieceInfo h3 {
 	margin-top: 0px;
 }
+
+#asteroids {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+.sketch {
+	margin-top: 100px;
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 600px;
+}

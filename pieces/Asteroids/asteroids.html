@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, minimumscale=1.0, maximum-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" href="../../styles/styles.css" />
+		<!-- Uncomment when logo is complete and converted to an ico file -->
+		<!-- <link rel="shortcut icon" type="iamge/x-icon" href="media/favicon.ico" -->
+		<title>Ryan Bell</title>	
+	</head>
+	<body>
+		<nav>
+			<div id="navName">
+				<a href="home.html">RYAN BELL</a>
+			</div>
+			<div class="navList">
+				<ul>
+					<li><a class="navLink" href="portfolio.html">Portfolio</a></li>
+					<li><a class="navLink" href="about.html">About</a></li>
+					<li><a class="navLink" href="resume.html">Resume</a></li>
+					<li><a class="navLink" href="content.html">Contact</a></li> 
+				</ul>
+			</div>
+		</nav>
+		
+		<section id="introduction">
+			<h1>Something about the projects?</h1>
+			<p>This may not be neccessary</p>
+		</section>
+		<div class="sketch">
+		<script src="../../media/processing.min.js"></script>
+		<!--<script type="application/processing" data-processing-target="asteroids">
+			/* @asteroids transparent="true"; */
+			void setup() {
+				size(400, 300);
+				stroke(230);
+				background(252);}
+			void draw() {
+				fill(252,252,252,30);
+				rect(0,0,width,height);
+				fill(sin((float)millis()/1000*2*PI)*255,0,120);
+				ellipse(mouseX,mouseY,25,25);
+				for (int i = 0; i < 10; i++){
+					ellipse(mouseX + cos(radians(i*36+millis()/100))*20, mouseY + sin(radians(i*36+millis()/100))*20,10,10);}
+			}
+		</script>
+		<canvas id="asteroids"></canvas>-->
+		<canvas data-processing-sources="Asteroids.pde"></canvas>
+		</div>
+	</body>
+</html>
