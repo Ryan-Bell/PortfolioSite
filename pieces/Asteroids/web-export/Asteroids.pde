@@ -230,18 +230,7 @@ class Ship{
     shipLastFire = 0;
     shipDelayTime = 300;
     keys = new boolean[5];
-    shipShape = createShape();              //The ship is created with the center at 0,0 and is very small
-    shipShape.beginShape();                 //Creating it at 0,0 ensures that the rotation point is in the center
-    shipShape.fill(255);                    //Creating it very small just gives a bit more control when scaling
-    shipShape.strokeWeight(1);              //the ship up
-    shipShape.vertex(0, -4);
-    shipShape.vertex(2,0);
-    shipShape.vertex(2,2);
-    shipShape.vertex(0,1);
-    shipShape.vertex(-2,2);
-    shipShape.vertex(-2,0);
-    shipShape.vertex(0, -4);
-    shipShape.endShape();
+    shipShape = loadShape("ship.svg");
   }
   
   //Handles the drawing of the ship by first updating the physics, then resetting it back to 0,0 with no rotation or scaling
