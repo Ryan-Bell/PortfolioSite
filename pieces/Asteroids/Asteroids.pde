@@ -2,6 +2,7 @@ ArrayList<Asteroid> asteroids;                            //global variables inc
 ArrayList<Bullet> bullets;
 Ship player;
 GameManager manager;
+boolean shouldUpdate = true;
 
 class GameManager{
   int bulletIndex;                                        //index used in the bullet recycling process
@@ -62,7 +63,10 @@ void setup(){
 }
 
 void draw(){
-  manager.drawGame(); 
+  if(shouldUpdate)
+    manager.drawGame();
+  else
+    player.destroyShip();
 }
 //This class represents the Asteroid objects. It handles the physics, drawing, and behovoir
 //of the asteroid objects.
@@ -275,11 +279,23 @@ class Ship{
   
   // Stops the drawing loop and prints a simple message to the screen saying that the player has lost.
   void destroyShip(){
-    fill(150);
     textAlign(CENTER,CENTER);
     textSize(72);
-    noLoop();
-    text("You Lose",width/2, height/2);
+    fill(255);
+    text("You Lose\nPress SPACE to restart",width/2, height/2);
+    fill(170);
+    text("You Lose\nPress SPACE to restart",width/2+1, height/2+1);
+    if(!keys[4]){
+      shouldUpdate = false;
+      fill(255);
+      text("You Lose\nPress SPACE to restart",width/2, height/2);
+      fill(170);
+      text("You Lose\nPress SPACE to restart",width/2+1, height/2+1);
+    }
+    else{
+      shouldUpdate = true;
+      setup();
+    }
   }
   
   //adds acceleration if up key is pressed based on direction. Updates roation based on key presses and
