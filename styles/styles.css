@@ -175,13 +175,6 @@ footer {
 	margin-right: auto;
 	display: block;
 }
-.sketch {
-	margin-top: 100px;
-	max-width: 800px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 600px;
-}
 canvas { 
 	display: block; 
 	outline: 0px; 
