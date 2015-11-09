@@ -19,7 +19,7 @@ color[] purples, pinks, blues, colors;                                    //Colo
 //minim audio object declarations
 Minim minim;                                                              //The main manager for the minim audio library
 AudioPlayer player;                                                       //This will hold all of the information about the song
-AudioMetaData metaData;                                                   //This specifically holds info such as title, author, runtime, etc
+//AudioMetaData metaData;                                                   //This specifically holds info such as title, author, runtime, etc
 FFT fft;                                                                  //This is the Fourier Fast Transform object that will be used for the spectrograph
 
 //Intro
@@ -83,7 +83,7 @@ void setup()
   //instantiate the minim objects
   minim = new Minim(this);                                                //create the Minim object
   player = minim.loadFile("Wet.mp3", 1024);                               //load the song (in the sketch directory) and set the  buffer size to 1024
-  metaData = player.getMetaData();                                        //strip and store the id3 tags from the mp3
+  //metaData = player.getMetaData();                                        //strip and store the id3 tags from the mp3
   fft = new FFT(player.bufferSize(), player.sampleRate());                //create the Fourier transform object, passing in the sample rate and buffersize
   
   //Create all of the dots
@@ -364,7 +364,7 @@ void draw()
         }
    }
    
-if(millis() > 210000)                                                            //when the song is complete, show the song, author information, etc with smaller font
+/*if(millis() > 210000)                                                            //when the song is complete, show the song, author information, etc with smaller font
 {
  textFont(loadFont("Gisha-48.vlw"));
  textSize(18);
@@ -375,6 +375,6 @@ if(millis() > 210000)                                                           
  text("Title: " + metaData.title(), 5, y);
  text("Author: " + metaData.author(), 5, y+=yi);
  text("Length: " + metaData.length() / 1000 + " seconds", 5, y+=yi);
-}
+}*/
  
 }
