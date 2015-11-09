@@ -12,6 +12,24 @@ body{
 	margin: 0px;
 	padding: 0px;
 }
+a{
+	color: #fff;
+	text-decoration: none;
+	font-family: 'Lato', sans-serif;
+	font-weight: bolder;
+}
+
+a:hover{
+	text-decoration: none;
+	color:#aaa;
+	font-family: 'Lato', sans-serif;
+}
+
+a:focus { 
+	outline: none;
+	text-decoration: none;
+}
+
 /* The following is styles for the navbar */
 nav {
 	background-color: #111;
@@ -153,7 +171,7 @@ footer {
 }
 .sampleItem3 {
 	height: 500px;
-	background-image: url(../media/Minion4KReference.png);
+	background-image: url(../media/asteroidCapture.png);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center top;
