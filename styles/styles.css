@@ -111,23 +111,6 @@ nav a:hover {
 	float: right;
 	padding-left: 20px;
 }
-/*
-#links #basiccontact {
-	margin: auto;
-	text-align: center;
-}
-#links #basiccontact p{
-	text-decoration: none;
-	color: #fff;
-	padding: 5px;
-	display: inline;
-}
-#links #basiccontact a {
-	border-right:  solid #fff;
-	text-decoration: none;
-	color: #fff;
-	padding-right: 13px;
-}*/
 #links #socialMedia {
 	margin: auto;
 	text-align: center;
@@ -188,12 +171,7 @@ footer {
 .portfolioPieceInfo h3 {
 	margin-top: 0px;
 }
-
-#asteroids {
-	margin-left: auto;
-	margin-right: auto;
-	display: block;
-}
+/*The following will affect all processing sketches*/
 canvas { 
 	display: block; 
 	outline: 0px; 
@@ -205,4 +183,10 @@ canvas {
 	border-left: 1px solid #444; border-top: 1px solid #444; 
 	border-right: 1px solid #333; border-bottom: 1px solid #333;
 	background-color: #3d3d3d;
+}
+/*styling specific to the asteroids sketch*/
+#asteroids {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
 }
