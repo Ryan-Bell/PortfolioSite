@@ -20,8 +20,18 @@ class Ship{
     shipLastFire = 0;
     shipDelayTime = 300;
     keys = new boolean[5];
-    shipShape = loadShape("ship.svg");
-    shapeMode(CENTER);
+    /*shipShape = createShape();              //The ship is created with the center at 0,0 and is very small
+    shipShape.beginShape();                 //Creating it at 0,0 ensures that the rotation point is in the center
+    shipShape.fill(255);                    //Creating it very small just gives a bit more control when scaling
+    shipShape.strokeWeight(1);              //the ship up
+    shipShape.vertex(0, -4);
+    shipShape.vertex(2,0);
+    shipShape.vertex(2,2);
+    shipShape.vertex(0,1);
+    shipShape.vertex(-2,2);
+    shipShape.vertex(-2,0);
+    shipShape.vertex(0, -4);
+    shipShape.endShape();*/
   }
   
   //Handles the drawing of the ship by first updating the physics, then resetting it back to 0,0 with no rotation or scaling
@@ -29,9 +39,28 @@ class Ship{
   //the appropriate scale.
   void drawShip(){
     updateShip();
-    shipShape.resetMatrix();
-    shipShape.rotate(radians(shipDirection));
-    shape(shipShape, shipPosition.x-7.5*cos(radians(shipDirection + PI/2)), shipPosition.y-10*sin(radians(shipDirection + PI/2)), 15,20);
+    //shipShape.resetMatrix();
+    //shipShape.rotate(radians(shipDirection));
+    //shape(shipShape, shipPosition.x, shipPosition.y, 10,10);
+    pushMatrix();
+    translate(shipPosition.x, shipPosition.y);
+    rotate(radians(shipDirection));
+    scale(3,3);
+    
+    
+    beginShape();                 //Creating it at 0,0 ensures that the rotation point is in the center
+    fill(255);                    //Creating it very small just gives a bit more control when scaling
+    strokeWeight(1);              //the ship up
+    vertex(0, -4);
+    vertex(2,0);
+    vertex(2,2);
+    vertex(0,1);
+    vertex(-2,2);
+    vertex(-2,0);
+    vertex(0, -4);
+    endShape();
+    
+    popMatrix();
   }
   
   // Stops the drawing loop and prints a simple message to the screen saying that the player has lost.
