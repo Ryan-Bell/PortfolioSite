@@ -153,6 +153,7 @@ footer {
 /* The following is styles for the sample work section*/
 #samplework {
 	width: 80%;
+	max-width: 1000px;
 	margin: auto;
 }
 .sampleItem1 {
