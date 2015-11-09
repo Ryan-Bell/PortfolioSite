@@ -28,9 +28,24 @@
 			<h1>Something about the projects?</h1>
 			<p>This may not be neccessary</p>
 		</section>
+	
+				<!--[if lt IE 9]>
+			<script type="text/javascript">alert("Your browser does not support the canvas tag.");</script>
+		<![endif]-->
+		<script src="processing.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			// convenience function to get the id attribute of generated sketch html element
+			function getProcessingSketchId () { return 'Asteroids'; }
+		</script>
+
 		<div class="sketch">
-		<script src="../../media/processing.min.js"></script>
-		<canvas data-processing-sources="Asteroids.pde"></canvas>
+			<canvas id="Asteroids" data-processing-sources="Asteroids.pde" 	width="1080" height="480">
+					<p>Your browser does not support the canvas tag.</p>
+					<!-- Note: you can put any alternative content here. -->
+			</canvas>
+			<noscript>
+				<p>JavaScript is required to view the contents of this page.</p>
+			</noscript>
 		</div>
 	</body>
 </html>
