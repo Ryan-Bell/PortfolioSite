@@ -70,8 +70,8 @@ nav a:hover {
 	background-color: #111;
 	color: #fff;
 	margin: auto;
-	padding-top: 120px;
-	padding-bottom: 120px;
+	padding-top: 150px;
+	padding-bottom: 150px;
 	text-align: center;
 }
 #introduction h1{
@@ -111,17 +111,8 @@ nav a:hover {
 	float: right;
 	padding-left: 20px;
 }
-#links #socialMedia {
-	margin: auto;
-	text-align: center;
-	padding-bottom: 25px;
-}
-#links #socialMedia ul{
-	list-style: none;
-}
-#links #socialMedia li {
-	display: inline;
-}
+
+
 /*The following is styles for the footer*/
 footer {
 	background-color: #111;
@@ -130,13 +121,30 @@ footer {
 	font-size: 8pt;
 	padding: 24px;
 } 
+footer #socialMedia {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	padding-bottom: 25px;
+}
+footer #socialMedia ul{
+	list-style: none;
+	padding: 0px;
+}
+footer #socialMedia li {
+	display: inline;
+	font-size: 12pt;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
 .circlePicture {
 	border-radius: 90px;
 }
 /* The following is styles for the sample work section*/
 #samplework {
-	width: 80%;
-	max-width: 1000px;
+	width: 100%;
+	/*max-width: 1000px;*/
 	margin: auto;
 }
 .sampleItem1 {
