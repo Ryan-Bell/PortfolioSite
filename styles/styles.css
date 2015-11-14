@@ -225,6 +225,9 @@ canvas {
 	.sampleItem2{width:33.33%; float: left;}
 	.sampleItem3{width:33.33%; float: left;}
 }
+@media (max-width: 1150px){
+	.sketch {display: none;}
+}
 @media (max-width: 800px){
 	.content{width: 100%;}
 	.largerow img{width:100%;}
