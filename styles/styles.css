@@ -204,6 +204,11 @@ canvas {
 	padding-top: 20px;
 	margin: auto;
 }
+.contentsmall {
+	width:50%;
+	padding-top: 20px;
+	margin: auto;
+}
 .largerow h3{
 	display: block;
 	float: right;
