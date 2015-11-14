@@ -212,6 +212,13 @@ canvas {
 	padding-bottom: 20px;
 }
 
+
+.largerow a{
+	color: black;
+}
+.largerow a:hover {
+	color: #aaa;
+}
 @media (min-width: 1300px){
 	#samplework{width:100%;height:500px;}
 	.sampleItem1{width:33.33%; float: left;}
