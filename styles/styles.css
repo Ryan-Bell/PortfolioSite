@@ -212,6 +212,57 @@ canvas {
 	padding-bottom: 20px;
 }
 
+#asteroidlink{
+	background: #eee url("../pieces/Asteroids/asteroidCapture.png") center center;
+	width: 350px;
+	height: 350px;
+	float: left;
+	margin: 10px;
+}
+#minionlink{
+	background: #eee url("../pieces/Minion/Minion4KReference.png") center center;
+	width: 350px;
+	height: 350px;
+	float: left;
+	margin: 10px;
+}
+
+#tsalink{
+	background: #eee url("../pieces/TSAGame/ChromeLvl5.jpg") center center;
+	width: 350px;
+	height: 350px;
+	float: left;
+	margin: 10px;
+}
+#bladelink {
+	background: #eee url("../pieces/SwitchBlade/TitleScreen.png") center center;
+	width: 350px;
+	height: 350px;
+	float: left;
+	margin: 10px;
+}
+#musiclink {
+	background: #eee url("../pieces/") center center;
+	width: 350px;
+	height: 350px;
+	float: left;
+	margin: 10px;
+}
+#hvzlink {
+	background: #eee url("../pieces/") center center;
+	width: 350px;
+	height: 350px;
+	float: left;
+	margin: 10px;
+}
+
+#djangounlink {
+	background: #eee url("../pieces/") center center;
+	width: 350px;
+	height: 350px;
+	float: left;
+	margin: 10px;
+}
 
 .largerow a{
 	color: black;
