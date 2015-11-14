@@ -204,6 +204,9 @@ canvas {
 	padding-top: 20px;
 	margin: auto;
 }
+.content img{
+	width: 50%;
+}
 .contentsmall {
 	width:50%;
 	padding-top: 20px;
