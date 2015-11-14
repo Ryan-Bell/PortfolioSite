@@ -242,7 +242,7 @@ canvas {
 	margin: 10px;
 }
 #musiclink {
-	background: #eee url("../pieces/") center center;
+	background: #eee url("../pieces/Music/Capture.PNG") center center;
 	width: 350px;
 	height: 350px;
 	float: left;
@@ -256,7 +256,7 @@ canvas {
 	margin: 10px;
 }
 
-#djangounlink {
+#djangounlinked {
 	background: #eee url("../pieces/") center center;
 	width: 350px;
 	height: 350px;
