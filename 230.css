@@ -22,6 +22,7 @@ header{
 	padding: 0px;
 	margin: 0px;
 }
+img{width: 60%;display: block; margin: auto;display: block;}
 header h2{
 	margin: 0px;
 	text-align: center;
