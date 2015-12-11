@@ -82,7 +82,7 @@ nav a:hover {color: #fff;}
 	float: right;
 }
 /* The following is styles for the intro section */
-#introduction {
+header {
 	background-color: #111;
 	color: #fff;
 	margin: auto;
@@ -90,11 +90,11 @@ nav a:hover {color: #fff;}
 	padding-bottom: 50px;
 	text-align: center;
 }
-#introduction h1{
+header h1{
 	margin-top: 0px;
 	font-size: 24pt;
 }
-#introduction p { 
+header p { 
 	color: #bbb;
 }
 /*The following is styles for the links section */
