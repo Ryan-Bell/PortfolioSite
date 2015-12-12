@@ -233,12 +233,12 @@ canvas {
 	display: block;
 }
 
-.content {
+main {
 	width:80%;
 	padding-top: 20px;
 	margin: auto;
 }
-.content img{
+main img{
 	width: 50%;
 }
 .contentsmall {
@@ -256,52 +256,52 @@ canvas {
 
 #asteroidlink{
 	background: #eee url("../pieces/Asteroids/asteroidCapture.png") center center;
-	width: 350px;
-	height: 350px;
+	width: 100px;
+	height: 100px;
 	float: left;
 	margin: 10px;
 }
 #minionlink{
 	background: #eee url("../pieces/Minion/Minion4KReference.png") center center;
-	width: 350px;
-	height: 350px;
+	width: 100px;
+	height: 100px;
 	float: left;
 	margin: 10px;
 }
 
 #tsalink{
 	background: #eee url("../pieces/TSAGame/ChromeLvl5.jpg") center center;
-	width: 350px;
-	height: 350px;
+	width: 100px;
+	height: 100px;
 	float: left;
 	margin: 10px;
 }
 #bladelink {
 	background: #eee url("../pieces/SwitchBlade/TitleScreen.png") center center;
-	width: 350px;
-	height: 350px;
+	width: 100px;
+	height: 100px;
 	float: left;
 	margin: 10px;
 }
 #musiclink {
 	background: #eee url("../pieces/Music/Capture.png") center center;
-	width: 350px;
-	height: 350px;
+	width: 100px;
+	height: 100px;
 	float: left;
 	margin: 10px;
 }
 #hvzlink {
 	background: #eee url("../pieces/") center center;
-	width: 350px;
-	height: 350px;
+	width: 100px;
+	height: 100px;
 	float: left;
 	margin: 10px;
 }
 
 #djangounlinked {
 	background: #eee url("../pieces/") center center;
-	width: 350px;
-	height: 350px;
+	width: 100px;
+	height: 100px;
 	float: left;
 	margin: 10px;
 }
@@ -325,7 +325,7 @@ canvas {
 	#links #headshot{margin: auto; float: none;}
 }
 @media (max-width: 800px){
-	.content{width: 100%;}
+	main{width: 100%;}
 	.largerow img{width:100%;}
 	.largerow h3{width: 70%; margin: auto; float: none;}
 	#row1{width: 100%; height: 300px;}
