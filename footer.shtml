@@ -11,8 +11,3 @@
 		</footer>
 	</body>
 </html>
-
-
-<!-- reference -->
-
-<h5><!--#config timefmt=%m%d%y--><!--#echo var="DATE_LOCAL"--></h5>

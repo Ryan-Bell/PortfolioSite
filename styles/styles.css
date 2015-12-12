@@ -136,6 +136,7 @@ footer {
 	text-align: center;
 	font-size: 8pt;
 	padding: 24px;
+	clear: both;
 } 
 footer #socialMedia {
 	width: 100%;
