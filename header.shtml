@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, minimumscale=1.0, maximum-scale=1.0" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="styles/styles.css" />
 		<link rel="shortcut icon" type="image/x-icon" href="media/favicon.ico">
 		<title>Ryan Bell</title>
@@ -12,14 +13,14 @@
 	<body>
 		<nav>
 			<div id="navName">
-				<a class="navLink" href="#">RYAN BELL</a>
+				<a id="indexlink" class="navLink" href="http://people.rit.edu/rjb1928/230/portfolio/">RYAN BELL</a>
 			</div>
 			<div class="navList">
 				<ul>
-					<li><a href="portfolio.html">Portfolio</a></li>
-					<li><a class="navLink" href="about.html">About</a></li>
-					<li><a class="navLink" href="media/resume.pdf">R&eacute;sum&eacute;</a></li>
-					<li><a class="navLink" href="notes.html">Notes</a></li> 
+					<li id="portfolioLink"><a id="aportfolio" href="portfolio.html">Portfolio</a></li>
+					<li id="aboutLink"><a id="aabout" class="navLink" href="about.html">About</a></li>
+					<li><a class="navLink" id="aresume" href="media/resume.pdf">R&eacute;sum&eacute;</a></li>
+					<li id="notesLink"><a id="anotes" class="navLink" href="notes.html">Notes</a></li> 
 				</ul>
 			</div>
 		</nav>
@@ -29,5 +30,3 @@
 			<p>Programming | Developing | Modeling</p>
 		</header>
 
-<!-- Styling for the active link -->
-<!-- style="	border-bottom: 3px;	border-bottom-style: solid;	border-bottom-color: #fff;" -->

@@ -1,8 +1,17 @@
 <!--#include virtual="../../header.shtml"-->
-					<li><a class="navLink" href="../../portfolio.html">Portfolio</a></li>
-					<li><a class="navLink" href="../../about.html">About</a></li>
-					<li><a class="navLink" href="../../media/resume.pdf">R&eacute;sum&eacute;</a></li>
-					<li><a class="navLink" href="../../notes.html">Notes</a></li> 
+<script>
+	$(function() {
+		$('#portfolioLink').css('borderBottom', '3px') ;
+		$('#portfolioLink').css('borderBottomStyle', 'solid') ;
+		$('#portfolioLink').css('borderBottomColor', '#fff') ;
+		
+		$('#aportfolio').css('href', '../../portfolio.html') ;
+		$('#aabout').css('href', '../../about.html') ;
+		$('#aresume').css('href', '../../media/resume.pdf') ;
+		$('#anotes').css('href', '../../notes.html') ;
+		
+	});
+</script>
 <!--need to override the header with the following -->
 		<header>
 			<h1>SwitchBlade</h1>

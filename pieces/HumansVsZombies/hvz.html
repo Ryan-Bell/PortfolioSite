@@ -1,8 +1,17 @@
 <!--#include virtual="../../header.shtml"-->
-					<li><a class="navLink" href="portfolio.html">Portfolio</a></li>
-					<li><a class="navLink" href="about.html">About</a></li>
-					<li><a class="navLink" href="resume.html">Resume</a></li>
-					<li><a class="navLink" href="content.html">Contact</a></li> 
+<script>
+	$(function() {
+		$('#portfolioLink').css('borderBottom', '3px') ;
+		$('#portfolioLink').css('borderBottomStyle', 'solid') ;
+		$('#portfolioLink').css('borderBottomColor', '#fff') ;
+		
+		$('#aportfolio').css('href', '../../portfolio.html') ;
+		$('#aabout').css('href', '../../about.html') ;
+		$('#aresume').css('href', '../../media/resume.pdf') ;
+		$('#anotes').css('href', '../../notes.html') ;
+		
+	});
+</script>
 				
 				<!--[if lt IE 9]>
 			<script type="text/javascript">alert("Your browser does not support the canvas tag.");</script>
