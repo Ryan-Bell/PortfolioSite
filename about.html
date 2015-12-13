@@ -8,8 +8,42 @@
 	});
 </script>
 	<main>
-		<p>
-			
-		</p>
+		<form method="post" action="http://people.rit.edu/rjb1928/230/formExample/formmail.php" name="SampleForm">
+			<input type="hidden" name="env_report" value="REMOTE_HOST,REMOTE_ADDR,HTTP_USER_AGENT,AUTH_TYPE,REMOTE_USER" />
+			<input type="hidden" name="recipients" value="rjb1928@rit.edu" />
+			<input type="hidden" name="required" value="EmailAddr:Your email address,FullName:Your name" />
+			<input type="hidden" name="subject" value="User email" />
+			<input type="hidden" name="derive_fields" value="email=EmailAddr,realname=FullName" />
+			<input type="hidden" name="mail_options" value="Exclude=email;realname" />
+		
+			<table border="1" cellspacing="5%">
+			<tr>
+				<td>
+				<p>Please enter your name:</p>
+				</td>
+				<td><input type="text" name="FullName" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<p>Please enter your email address:</p>
+				</td>
+				<td><input type="text" name="EmailAddr" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<p>Please enter your message:</p>
+				</td>
+				<td><input type="text" name="message" />
+				</td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Submit" /></td>
+				<td style="text-align:right;"><span style="font-size:60%;">Powered by Tectite <a href="http://www.tectite.com/" target="_blank">contact form</a> processor (FormMail).</span>
+				</td>
+			</tr>
+			</table>
+		</form>
 	</main>
 <!--#include virtual="footer.shtml"-->	
