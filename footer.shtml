@@ -9,6 +9,7 @@
 				</ul>
 			</div>
 			<h5>&copy;2015 Ryan Bell. All Rights Reserved.</h5>
+			<h5><!--#config timefmt="%m/%d/%y"--><!--#echo var="DATE_LOCAL"--></h5>
 		</footer>
 	</body>
 </html>
