@@ -11,7 +11,11 @@ nav{
 #navList{
     
 }
-
+body{
+    max-width: 1200px;
+    margin: 25px auto;
+    padding: 20px;
+}
 /*PROJECT TILES*/
 #projectThumbs{
     clear:both;
