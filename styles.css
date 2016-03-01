@@ -176,6 +176,14 @@ nav li a{
     }
 }
 @media only screen and (max-width:750px){
+    .project{
+        width: 100%;
+    }
+    .project-meta{
+        margin: 0px auto;
+        width: auto;
+        float: none;
+    }
     #projectThumbs>.wrapper{
         width:103%;
         margin-left:-3%;
