@@ -11,60 +11,9 @@ main{
     overflow: hidden;
 }
 /*NAVIGATION*/
-header{
-    margin-bottom: 0px;
-    overflow: hidden;
-}
 a{
    color: #111;
    text-decoration: none;
-}
-#logo{
-    float: left;
-}
-#topNav{
-    float:right;
-    position: relative;
-    z-index: 100;
-    font-size: 14px;
-    line-height: 1.6em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 400;
-    font-style: normal;
-    overflow: hidden;
-}
-nav ul{
-    list-style: none;
-    list-style-image: none;
-    padding: none;
-    margin: 0;
-    display: block;
-    overflow: hidden;
-}
-nav li{
-    float: left;
-    position: relative;
-    margin-right: 26px;
-    display: list-item;
-}
-nav li a{
-    padding-top: 28.5px;
-    padding-right: 0px;
-    padding-bottom: 28.5px;
-    padding-left: 0px;
-    display: inline-block;
-    line-height: 28px;
-    margin-right: 0px;
-}
-.main-nav{
-    overflow: hidden;
-}
-.main-nav ul{
-    overflow: hidden;
-}
-#projectThumbs{
-    overflow: hidden;
 }
 .wrapper{
     overflow: hidden;
