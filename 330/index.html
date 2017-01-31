@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>330 index page</title>
+		<style type="text/css">
+			body{
+				margin: 40px auto;
+				max-width: 650px;
+				line-height: 1.6;
+				font-size: 18px;
+				color: #444;
+				padding: 0 10px;
+			}	
+			h1,h2,h3 {
+				line-height: 1.2;
+			}
+			.container { 
+				position: relative;
+				width: 600px;
+				height: 300px;	
+			}
+			.container > canvas {
+				position: absolute;
+				top: 0;
+				left: 0;	
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<canvas width="600" height="300" style="z-index: 1;"></canvas>
+			<canvas width="600" height="300" style="z-index: 2;"></canvas>
+		</div>
+		<h1>About Me</h1>
+		<p>I am a 3<sup>rd</sup> year at RIT pursuing Game Design and Development and Software Engineering majors. I have a 3D modeling hobby and I am looking to get into to field of path tracers and other physical based rendering applications.</p>
+		<img src="./me.jpg" alt="me" width="200">
+		<h1>Links</h1>
+		<a href="./smiley.html">Smiley ICE</a>
+		<br>
+		<a href="./audio.html">Audio Visualizer</a>
+		<br>
+		<a href="./game.html">Game</a>
+		<br>
+		<a href="./service.html">Service</a>
+		<script>
+			const ctx2 = document.getElementsByTagName("canvas")[1].getContext("2d");
+			ctx2.fillStyle = "rgba(255,255,255,0.5)";
+			ctx2.rect(0,0,600,300);
+			ctx2.fill();
+			ctx2.lineWidth = 2;
+			ctx2.font = "35px Arial";
+			ctx2.strokeText("Rich Media Web App Development", 10, 50);
+			ctx2.font = "28px Arial";
+			ctx2.strokeText("Ryan Bell", 10, 80);
+			
+
+			function circle(x, y, r, ctx, c){
+				ctx.beginPath();
+				ctx.arc(x,y,r,0,2*Math.PI, false);
+				ctx.fillStyle = c;
+				ctx.fill();
+				ctx.lineWidth = 1;
+				ctx.stroke();
+			};
+			const randomColor = () => {
+				return '#' + ((1<<24) * Math.random() | 0).toString(16);
+			};
+			const randomInRange = (min, max) => {
+				return Math.random() * (max - min) + min;
+			};
+			const ctx = document.getElementsByTagName("canvas")[0].getContext("2d");	
+			setInterval(()=>{
+				circle(randomInRange(0,600),randomInRange(0,300), randomInRange(3,15), ctx, randomColor());
+			}, 50);
+		</script>
+	</body>
+</html>
