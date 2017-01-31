@@ -1,0 +1,7 @@
+<IfModule mod_expires.c>
+        ExpiresActive On
+        ExpiresDefault "now"
+</IfModule>
+
+Header set Cache-Control no-cache
+
