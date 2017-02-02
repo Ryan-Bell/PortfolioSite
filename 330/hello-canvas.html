@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Template</title>
+	<style type="text/css">
+	canvas{
+		border:1px solid gray;
+	}
+	</style>
+	<script>
+		// #0 - In this course we will always use ECMAScript 5's "strict" mode
+		// See what 'use strict' does here:
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode
+		'use strict';
+		
+		// #1 call the init function after the pages loads
+		// this is called an "event handler"
+		window.onload = init;
+	
+		function init(){
+			
+			// A - canvas variable points at <canvas> tag	
+			var canvas = document.querySelector('canvas');
+			
+			// B - the ctx variable points at a "2D drawing context"
+			var ctx = canvas.getContext('2d');
+			
+			// C - all fill operations are now in yellow
+			ctx.fillStyle = 'blue';
+			
+			// D - fill a rectangle with the current fill color
+			ctx.fillRect(0,0,640,480);
+			
+			// E - set the current font
+			ctx.font = '60pt Arial';
+			
+			// F - change the current fill color
+			ctx.fillStyle = '#eee';
+			ctx.save();
+			ctx.shadowColor = 'red';
+			ctx.shadowOffsetX = 0;
+			ctx.shadowOffsetY = 0;
+			ctx.shadowBlur = 30;
+			ctx.textAlign = 'center';
+			ctx.textBaseline = 'middle';
+			
+			// G - draw and fill text using current fill color
+			ctx.fillText('Ryan Bell', 320, 240);
+			ctx.restore();
+			ctx.font = '40pt Arial';
+			ctx.fillStyle = '#ddd';
+			ctx.fillText('IGM', 320, 310);
+			
+			ctx.fillStyle = '#eee';
+
+			ctx.strokeStyle = 'green';
+			ctx.lineWidth = 7;
+			ctx.beginPath();
+			ctx.moveTo(0,100);
+			ctx.lineTo(640,100);
+			ctx.closePath();
+			ctx.stroke();
+
+			ctx.strokeStyle = 'red';
+			ctx.lineWidth = 10;
+			ctx.beginPath();
+			ctx.moveTo(110,0);
+			ctx.lineTo(110,480);
+			ctx.closePath();
+			ctx.stroke();
+
+			ctx.strokeStyle = 'white';
+			ctx.lineWidth = 4;
+			ctx.beginPath();
+			ctx.moveTo(0,480);
+			ctx.lineTo(0,400);
+			ctx.lineTo(80,480);
+			ctx.lineTo(0,480);
+			ctx.closePath();
+			ctx.stroke();
+
+			const randomInRange = (min, max) => {
+				return Math.random() * (max - min) + min;
+			};
+			var size;
+			for(var x = 0; x < 590;){
+				size = randomInRange(5,50); 
+				ctx.fillRect(x,0,size, size);
+				x += size;
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<canvas width="640" height="480">
+		Get a real browser!
+	</canvas>
+</body>
+</html>
