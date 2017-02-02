@@ -10,6 +10,7 @@
 				font-size: 18px;
 				color: #444;
 				padding: 0 10px;
+				font-family: Arial;
 			}	
 			h1,h2,h3 {
 				line-height: 1.2;
@@ -31,10 +32,12 @@
 			<canvas width="600" height="300" style="z-index: 1;"></canvas>
 			<canvas width="600" height="300" style="z-index: 2;"></canvas>
 		</div>
-		<h1>About Me</h1>
-		<p>I am a 3<sup>rd</sup> year at RIT pursuing Game Design and Development and Software Engineering majors. I have a 3D modeling hobby and I am looking to get into to field of path tracers and other physical based rendering applications.</p>
+		<h2>About Me</h2>
+		<p>I am a 3rd year at RIT pursuing Game Design and Development and Software Engineering majors. I have a 3D modeling hobby and I am looking to get into to field of path tracers and other physical based rendering applications.</p>
 		<img src="./me.jpg" alt="me" width="200">
-		<h1>Links</h1>
+		<h2>Excercies</h2>
+		<a href="./hello-canvas.html">Hello Canvas</a>
+		<br>
 		<a href="./smiley.html">Smiley ICE</a>
 		<br>
 		<a href="./audio.html">Audio Visualizer</a>
@@ -43,15 +46,20 @@
 		<br>
 		<a href="./service.html">Service</a>
 		<script>
-			const ctx2 = document.getElementsByTagName("canvas")[1].getContext("2d");
-			ctx2.fillStyle = "rgba(255,255,255,0.5)";
-			ctx2.rect(0,0,600,300);
-			ctx2.fill();
-			ctx2.lineWidth = 2;
-			ctx2.font = "35px Arial";
-			ctx2.strokeText("Rich Media Web App Development", 10, 50);
-			ctx2.font = "28px Arial";
-			ctx2.strokeText("Ryan Bell", 10, 80);
+			const topCtx = document.getElementsByTagName("canvas")[1].getContext("2d");
+			//fade out the circles with semi-trans layer
+			topCtx.fillStyle = "rgba(255,255,255,0.5)";
+			topCtx.rect(0,0,600,300);
+			topCtx.fill();
+
+			topCtx.lineWidth = 2;
+			topCtx.fillStyle = '#444';
+
+			topCtx.font = "35px Arial";
+			topCtx.fillText("Rich Media Web App Development", 10, 50);
+
+			topCtx.font = "28px Arial";
+			topCtx.fillText("Ryan Bell", 10, 80);
 			
 
 			function circle(x, y, r, ctx, c){
