@@ -29,15 +29,11 @@
 	
 	<script>
 		'use strict';
-		
-		// #1 call the init function after the pages loads
-		// this is called an "event handler"
+	
 		window.onload = init;
 	
 		var ctx;
 		function init(){
-			// #2 Now that the page has loaded, start drawing!
-			console.log('init called');
 			
 			// A - canvas variable points at <canvas> tag
 			var canvas = document.querySelector('canvas');
@@ -52,29 +48,50 @@
 			ctx.fillRect(0,0,500,300); 
 			
 			// #3 Hook up buttons
-			var redButton = document.querySelector('#red')
-			redButton.onclick = drawRed;
+			document.querySelector('#circle').onclick = function(){
+				ctx.fillStyle = 'yellow';
+				ctx.fillRect(20,20,460,260);
+				ctx.beginPath();
+				ctx.arc(250,150,20,0,2*Math.PI, false);
+				ctx.fillStyle = 'purple';
+				ctx.fill();
+				ctx.lineWidth = 5;
+				ctx.beginPath();
+				ctx.arc(250,150,20,0,2*Math.PI, false);
+				ctx.strokeStyle = 'white';
+				ctx.stroke();
+				
+			};
+			document.querySelector('#triangle').onclick = function(){
+				ctx.fillStyle = 'yellow';
+				ctx.fillRect(20,20,460,260);
+				ctx.fillStyle = 'magenta';
+				ctx.beginPath();
+				ctx.moveTo(200,180);
+				ctx.lineTo(200,100);
+				ctx.lineTo(280,180);
+				ctx.lineTo(200,180);
+				ctx.closePath();
+				ctx.fill();
+				ctx.strokeStyle = 'white';
+				ctx.lineWidth = 5;
+				ctx.beginPath();
+				ctx.moveTo(200,180);
+				ctx.lineTo(200,100);
+				ctx.lineTo(280,180);
+				ctx.lineTo(200,180);
+				ctx.closePath();
+				ctx.stroke();
 
-			
-			// or do it as a 1-liner
-			document.querySelector('#green').onclick = drawGreen;
-			
-		
+			};
+
+			['#red', '#green', '#blue', '#yellow'].forEach((v) =>{
+				document.querySelector(v).onclick = function(){
+					ctx.fillStyle = this.getAttribute('color');
+					ctx.fillRect(20,20,460,260); 
+				};
+			})
 		}
-		
-		function drawRed(){
-			// all fill operations are now in red
-			ctx.fillStyle = 'red';  
-			
-			// fill a rectangle with the current fill color
-			ctx.fillRect(20,20,460,260); 
-		}
-		
-		function drawGreen(){
-			console.log("drawGreen called!");
-			
-		}
-		
 	</script>
 </head>
 <body>
@@ -83,8 +100,12 @@
 	</canvas>
 	
 	<section id="controls">
-		<button id="red">Fill Red</button>
-		<button id="green">Fill Green</button>
+		<button color='red' id="red">Fill Red</button>
+		<button color='#008000' id="green">Fill Green</button>
+		<button color='blue' id="blue">Fill Blue</button>
+		<button color='yellow' id="yellow">Fill Yellow</button>
+		<button id="triangle">Triangle</button>
+		<button id="circle">Circle</button>
 	</section>
 	
 	
