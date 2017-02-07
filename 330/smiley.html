@@ -34,10 +34,12 @@
 		<script>
 			'use strict';
 			function circle(x, y, r, ctx, c){
+				ctx.save();
 				ctx.beginPath();
 				ctx.arc(x,y,r,0,2*Math.PI, false);
 				ctx.fillStyle = c;
 				ctx.fill();
+				ctx.restore();
 			};
 			function curve(sx, sy, c1x, c1y, c2x, c2y, ex, ey, ctx){
 				ctx.beginPath();
@@ -67,17 +69,15 @@
 			circle(312, 237, 3, ctx, 'white');
 
 			ctx.lineWidth = 1;
-			//f0592a
-			curve(240, 270, 240,280,340,280,360,270,ctx);
-			curve(285, 290, 295,300,305,300,315,290,ctx);
-			curve(270, 225, 270,220,285,210,285,215,ctx);
-			curve(330, 225, 330,220,315,210,315,215,ctx);
+			curve(240, 270, 240, 280, 340, 280, 360, 270, ctx);
+			curve(285, 290, 295, 300, 305, 300, 315, 290, ctx);
+			curve(270, 225, 270, 220, 285, 210, 285, 215, ctx);
+			curve(330, 225, 330, 220, 315, 210, 315, 215, ctx);
 
 			ctx.font = 'bold 60pt Arial';
 			ctx.textAlign = 'center';
 			ctx.textBaseline = 'middle';
 			
-			// G - draw and fill text using current fill color
 			ctx.fillText('Caaan Do!', 300, 40);
 			
 
