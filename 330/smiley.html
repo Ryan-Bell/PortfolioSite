@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Smiley ICE</title>
+		<style type="text/css">
+			body{
+				margin: 40px auto;
+				max-width: 650px;
+				line-height: 1.6;
+				font-size: 18px;
+				color: #444;
+				padding: 0 10px;
+				font-family: Arial;
+			}	
+			h1,h2,h3 {
+				line-height: 1.2;
+			}
+			.container { 
+				position: relative;
+				width: 600px;
+				height: 300px;	
+			}
+			.container > canvas {
+				position: absolute;
+				top: 0;
+				left: 0;	
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<canvas width="600" height="300" style="z-index: 1;"></canvas>
+		</div>
+		<input type="range" value="50" id="xslider">
+		<input type="range" value="50" id="yslider">
+		<input type="range" value="50" id="zslider">
+		<script>
+			'use strict';
+			function circle(x, y, r, ctx, c){
+				/*
+				ctx.shadowOffsetX = 0;
+				ctx.shadowOffsetY = 0;
+				ctx.shadowColor = c;
+				ctx.shadowBlur = 40;
+				*/
+				ctx.beginPath();
+				ctx.arc(x,y,r,0,2*Math.PI, false);
+				ctx.fillStyle = c;
+				ctx.fill();
+			};
+
+			const ctx = document.getElementsByTagName("canvas")[0].getContext("2d");	
+			let xslider = document.getElementById('xslider');
+			function draw(){
+				ctx.clearRect(0,0,600,300);
+				circle(300, 150, 100, ctx, '#999');
+				circle(250 + +xslider.value, 150, 50, ctx, '#BBB');
+				circle(300, 150, 20, ctx, '#DDD');
+				window.requestAnimationFrame(draw);
+			}
+			window.requestAnimationFrame(draw);
+		</script>
+	</body>
+</html>
