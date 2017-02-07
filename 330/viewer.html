@@ -46,44 +46,56 @@
 			
 			// D - fill a rectangle covering the entire canvas with the current fill color
 			ctx.fillRect(0,0,500,300); 
-			
-			// #3 Hook up buttons
-			document.querySelector('#circle').onclick = function(){
-				ctx.fillStyle = 'yellow';
-				ctx.fillRect(20,20,460,260);
-				ctx.beginPath();
-				ctx.arc(250,150,20,0,2*Math.PI, false);
-				ctx.fillStyle = 'purple';
-				ctx.fill();
-				ctx.lineWidth = 5;
-				ctx.beginPath();
-				ctx.arc(250,150,20,0,2*Math.PI, false);
-				ctx.strokeStyle = 'white';
-				ctx.stroke();
-				
-			};
-			document.querySelector('#triangle').onclick = function(){
-				ctx.fillStyle = 'yellow';
-				ctx.fillRect(20,20,460,260);
-				ctx.fillStyle = 'magenta';
-				ctx.beginPath();
-				ctx.moveTo(200,180);
-				ctx.lineTo(200,100);
-				ctx.lineTo(280,180);
-				ctx.lineTo(200,180);
-				ctx.closePath();
-				ctx.fill();
-				ctx.strokeStyle = 'white';
-				ctx.lineWidth = 5;
-				ctx.beginPath();
-				ctx.moveTo(200,180);
-				ctx.lineTo(200,100);
-				ctx.lineTo(280,180);
-				ctx.lineTo(200,180);
-				ctx.closePath();
-				ctx.stroke();
 
+			function clear(){	
+				ctx.fillStyle = 'yellow';
+				ctx.fillRect(20,20,460,260);
 			};
+
+			function  strokeFill(action, options){
+				let ctx = options.ctx;
+				ctx.save();
+				ctx.fillStyle   = options.fill   || 'black';
+				ctx.strokeStyle = options.stroke || 'black';
+				ctx.lineWidth   = options.width  || 1;
+
+				ctx.beginPath();
+				action(ctx);
+				ctx.fill();
+
+				ctx.beginPath();
+				action(ctx);
+				ctx.stroke();
+				ctx.restore();
+			}
+
+			document.querySelector('#circle').onclick = function(){
+				clear();
+				strokeFill((ctx)=>{
+						ctx.arc(250,150,20,0,2*Math.PI, false);
+					}, {
+					'fill': 'purple',
+					'stoke': 'white',
+					'width': 5,
+					'ctx': ctx
+				});
+			};
+
+			document.querySelector('#triangle').onclick = function(){
+				clear();
+				strokeFill((ctx)=>{
+						ctx.moveTo(200,180);
+						ctx.lineTo(200,100);
+						ctx.lineTo(280,180);
+						ctx.lineTo(200,180);
+					}, {
+					'fill': 'magenta',
+					'stoke': 'white',
+					'width': 5,
+					'ctx': ctx
+				});
+			};
+
 
 			['#red', '#green', '#blue', '#yellow'].forEach((v) =>{
 				document.querySelector(v).onclick = function(){
