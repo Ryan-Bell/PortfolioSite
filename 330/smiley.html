@@ -29,36 +29,58 @@
 	</head>
 	<body>
 		<div class="container">
-			<canvas width="600" height="300" style="z-index: 1;"></canvas>
+			<canvas width="600" height="400" style="z-index: 1;"></canvas>
 		</div>
-		<input type="range" value="50" id="xslider">
-		<input type="range" value="50" id="yslider">
-		<input type="range" value="50" id="zslider">
 		<script>
 			'use strict';
 			function circle(x, y, r, ctx, c){
-				/*
-				ctx.shadowOffsetX = 0;
-				ctx.shadowOffsetY = 0;
-				ctx.shadowColor = c;
-				ctx.shadowBlur = 40;
-				*/
 				ctx.beginPath();
 				ctx.arc(x,y,r,0,2*Math.PI, false);
 				ctx.fillStyle = c;
 				ctx.fill();
 			};
+			function curve(sx, sy, c1x, c1y, c2x, c2y, ex, ey, ctx){
+				ctx.beginPath();
+				ctx.moveTo(sx, sy);
+				ctx.bezierCurveTo(c1x,c1y,c2x,c2y,ex,ey);
+				ctx.stroke();
+			};
 
-			const ctx = document.getElementsByTagName("canvas")[0].getContext("2d");	
-			let xslider = document.getElementById('xslider');
-			function draw(){
-				ctx.clearRect(0,0,600,300);
-				circle(300, 150, 100, ctx, '#999');
-				circle(250 + +xslider.value, 150, 50, ctx, '#BBB');
-				circle(300, 150, 20, ctx, '#DDD');
-				window.requestAnimationFrame(draw);
-			}
-			window.requestAnimationFrame(draw);
+			const ctx = document.getElementsByTagName("canvas")[0].getContext("2d");
+			ctx.fillStyle = '#262c3a';
+			ctx.fillRect(0,0,600,400);
+			ctx.fillStyle = '#fedd14';
+			ctx.fillRect(80,80,440,310);
+			
+			ctx.strokeStyle = 'black';
+			ctx.lineWidth = 5;
+
+			ctx.beginPath();
+			ctx.arc(300,250,100,0,2*Math.PI, false);
+			ctx.strokeStyle = '#262c3a';
+			ctx.stroke();
+
+			circle(300, 250, 100, ctx, '#74e2f3');
+			circle(285, 240, 10, ctx, 'black');
+			circle(315, 240, 10, ctx, 'black');
+			circle(282, 237, 3, ctx, 'white');
+			circle(312, 237, 3, ctx, 'white');
+
+			ctx.lineWidth = 1;
+			//f0592a
+			curve(240, 270, 240,280,340,280,360,270,ctx);
+			curve(285, 290, 295,300,305,300,315,290,ctx);
+			curve(270, 225, 270,220,285,210,285,215,ctx);
+			curve(330, 225, 330,220,315,210,315,215,ctx);
+
+			ctx.font = 'bold 60pt Arial';
+			ctx.textAlign = 'center';
+			ctx.textBaseline = 'middle';
+			
+			// G - draw and fill text using current fill color
+			ctx.fillText('Caaan Do!', 300, 40);
+			
+
 		</script>
 	</body>
 </html>
