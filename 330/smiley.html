@@ -41,6 +41,7 @@
 				ctx.fill();
 				ctx.restore();
 			};
+
 			function curve(sx, sy, c1x, c1y, c2x, c2y, ex, ey, ctx){
 				ctx.beginPath();
 				ctx.moveTo(sx, sy);
@@ -48,6 +49,7 @@
 				ctx.stroke();
 			};
 
+			//background
 			const ctx = document.getElementsByTagName("canvas")[0].getContext("2d");
 			ctx.fillStyle = '#262c3a';
 			ctx.fillRect(0,0,600,400);
@@ -58,26 +60,42 @@
 			ctx.lineWidth = 5;
 
 			ctx.beginPath();
+			let xoff = 275;
+			let yoff = 100;
+			ctx.moveTo(12 + xoff, 50 + yoff);
+			ctx.bezierCurveTo(8 + xoff, 25 + yoff, 22 + xoff, 25 + yoff, 18 + xoff, 50 + yoff);
+			ctx.bezierCurveTo(14+ xoff, 20 + yoff, 28 + xoff, 20 + yoff, 24 + xoff, 50 + yoff);
+			ctx.bezierCurveTo(20+ xoff, 18 + yoff, 34 + xoff, 18 + yoff, 30 + xoff, 50 + yoff);
+			ctx.bezierCurveTo(26+ xoff, 30 + yoff, 40 + xoff, 30 + yoff, 36 + xoff, 50 + yoff);
+			ctx.fillStyle = '#e56402';
+			ctx.fill();
+			
+			//head outline
+			ctx.beginPath();
 			ctx.arc(300,250,100,0,2*Math.PI, false);
 			ctx.strokeStyle = '#262c3a';
 			ctx.stroke();
 
+			//head, eyes, eyes highlights
 			circle(300, 250, 100, ctx, '#74e2f3');
 			circle(285, 240, 10, ctx, 'black');
 			circle(315, 240, 10, ctx, 'black');
 			circle(282, 237, 3, ctx, 'white');
 			circle(312, 237, 3, ctx, 'white');
 
+			//mouth and eyebrow lines
 			ctx.lineWidth = 1;
 			curve(240, 270, 240, 280, 340, 280, 360, 270, ctx);
 			curve(285, 290, 295, 300, 305, 300, 315, 290, ctx);
 			curve(270, 225, 270, 220, 285, 210, 285, 215, ctx);
 			curve(330, 225, 330, 220, 315, 210, 315, 215, ctx);
 
+			//text
+			ctx.fillStyle = 'white';
 			ctx.font = 'bold 60pt Arial';
 			ctx.textAlign = 'center';
 			ctx.textBaseline = 'middle';
-			
+	
 			ctx.fillText('Caaan Do!', 300, 40);
 			
 
