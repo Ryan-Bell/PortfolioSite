@@ -36,6 +36,8 @@
 		
 		// global variables
 		var circles = [];
+		var paletteSize, palette;
+		setPalette(4);	
 		var canvas, ctx, boxChecked, sliderValue=0.5, dragging, mouse;
 		var FUDGE_DIVISOR = 2.5;
 		
@@ -66,7 +68,7 @@
 				mouse = getMouse(e);
 				var distance = distanceBetween(oldMouseX,oldMouseY,mouse.x,mouse.y)
 				var alpha = boxChecked ? 0.5 : 1.0;
-				drawCircle(mouse.x, mouse.y, distance/FUDGE_DIVISOR, getRandomColor(alpha));
+				drawCircle(mouse.x, mouse.y, distance/FUDGE_DIVISOR, getRandomPalette(alpha));
 			});
 		
 			document.querySelector("#clearButton").onclick = clearCanvas; 
@@ -115,11 +117,15 @@
 		// returns a random color of alpha 1.0
 		// http://paulirish.com/2009/random-hex-color-code-snippets/
 		function getRandomColor(alpha){
+				alpha = alpha || 1.0;
    			var red = Math.round(Math.random()*254+1);
    			var green = Math.round(Math.random()*254+1);
    			var blue=Math.round(Math.random()*254+1);
    			var color='rgba('+red+','+green+','+blue+','+alpha+')'; // 0.50 alpha
    			return color;
+		}
+		function getRandomPalette(){
+			return palette[Math.floor(Math.random()*palette.length)];
 		}
 		
 		// used to calculate how fast the mouse is moving
@@ -133,6 +139,11 @@
 		}
 		function setScheme(c){
 			console.log("hi");
+		}
+		function setPalette(c){
+			if(!c) return;
+			paletteSize = +c;
+			palette = Array.apply(null, new Array(paletteSize)).map(getRandomColor);
 		}
 		
 		window.onload = init;
@@ -158,6 +169,7 @@
 		</span>
 		<span style="float:right" id="checkboxResults">???</span>
 	</div>
+	Palette Size: <input type="text" value="4" name="" oninput="setPalette(this.value)"><br>
 	<form action="">
 		Base Color: <input type="color" value="#337711" oninput="setColor(this.value)"><br>
 		<input name="scheme" type="radio" value="triad" onchange="setScheme(this.value)" > Triad <br>
