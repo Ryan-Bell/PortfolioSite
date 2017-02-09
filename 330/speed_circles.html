@@ -18,7 +18,7 @@
 		
 		#controls{
 			padding:5px;
-			width:490px;
+			width:790px;
 		}
 		
 		#controls div{
@@ -35,10 +35,10 @@
 		"use strict";
 		
 		// global variables
-		var circles = [];
 		var paletteSize, palette;
 		setPalette(4);	
-		var canvas, ctx, boxChecked, sliderValue, dragging, mouse;
+		var canvas, ctx, boxChecked, sliderValue, dragging, mouse, scheme, colorSet;
+		var baseColor = '#337711';
 		var FUDGE_DIVISOR = 2.5;
 		
 		/* init() is called when the page loads */
@@ -68,6 +68,7 @@
 				mouse = getMouse(e);
 				var distance = distanceBetween(oldMouseX,oldMouseY,mouse.x,mouse.y)
 				let color = getRandomPalette();
+				color.setAlpha(1);
 				if(boxChecked) color.setAlpha(0.5);
 				drawCircle(mouse.x, mouse.y, distance/FUDGE_DIVISOR, color);
 			});
@@ -134,10 +135,30 @@
 			return Math.sqrt(dx*dx + dy*dy);
 		}
 		function setColor(c){
-			console.log("hello");
+			baseColor = c;
+			setColorSet();
 		}
 		function setScheme(c){
-			console.log("hi");
+			scheme = c;
+			setColorSet();
+		}
+		function setColorSet(){
+			if(!colorSet) return;
+			switch(scheme){
+				case 'triad':
+					palette = tinycolor(baseColor).triad();
+					break;
+				case 'tetrad':
+					palette = tinycolor(baseColor).tetrad();
+					break;
+				case 'monochromatic':
+					palette = tinycolor(baseColor).monochromatic();
+					break;
+				case 'analogous':
+					palette = tinycolor(baseColor).analogous();
+					break;
+			}
+			palette.map(function(v){ return v.toHexString() });
 		}
 		function setPalette(c){
 			if(!c) return;
@@ -146,13 +167,15 @@
 		}
 		function setType(c){
 			colorSet = c;
+			if(colorSet) setPalette(paletteSize);
+			else setColorSet();
 		}
 		
 		window.onload = init;
 	</script>
 </head>
 <body>
-<canvas id="canvas" height="500" width="500"></canvas>
+<canvas id="canvas" height="500" width="800"></canvas>
 <div id="controls">
 	<div>
     	<span><input id="clearButton" type="button" value="Clear Canvas"/></span>
@@ -172,25 +195,20 @@
 		<span style="float:right" id="checkboxResults">???</span>
 	</div>
 	<hr>
-	<form action="">
-		Use Color Set<input type="checkbox" value="" name="" oninput="setType(this.value)"><br>
+	<form action="GET">
+		Use Color Set<input type="checkbox" value="" name="color" onchange="setType(this.checked)"><br>
 		Base Color:  <input type="color" value="#337711" oninput="setColor(this.value)"><br>
 		<input name="scheme" type="radio" value="triad" onchange="setScheme(this.value)" > Triad <br>
 		<input name="scheme" type="radio" value="tetrad" onchange="setScheme(this.value)" > Tetrad<br>
 		<input name="scheme" type="radio" value="monochromatic" onchange="setScheme(this.value)" > Monochromatic<br>
 		<input name="scheme" type="radio" value="analogous" onchange="setScheme(this.value)" > Analogous<br>
-		<input name="scheme" type="radio" value="complements" onchange="setScheme(this.value)" > Complements
 	</form>
-	
-	<hr/>
-	<div>
-		<p>Click and drag in the canvas window. The faster you drag, the bigger the circles are. Best viewed in Chrome or Safari.</p>
-	</div>
 </div>
 
 <div id="assignment">
 	<h1>Description</h1>
-	<p></p>
+	<p>I made slider change how many colors to choose from.<br> I added other color functions that you can use by checking 'Use Color Set'. The are different color schemes that use the base color as a start.</p>
+	<p>I used the tinycolor.js library for the color scheme calculations</p>
 </div>
 </body>
 </html>
