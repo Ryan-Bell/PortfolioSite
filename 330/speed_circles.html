@@ -13,13 +13,7 @@
 		#canvas,#controls{
 			background: #ffffff;
 			cursor: pointer;
-			margin-left: 10px;
-			margin-top: 10px;
-			box-shadow: 3px 3px 6px rgba(0,0,0,0.5);
-			
-			margin-left: 10px;
-			margin-top: 10px;
-			
+			margin: 10px;
 		}
 		
 		#controls{
@@ -41,11 +35,14 @@
 		"use strict";
 		
 		// global variables
-		var canvas,ctx,boxChecked=false,sliderValue=0.5;
+		var canvas,ctx,boxChecked=false,sliderValue=0.5, dragging, mouse;
+		var FUDGE_DIVISOR = 2.5;
 		
 		/* init() is called when the page loads */
 		function init(){
 			canvas = document.querySelector("#canvas");
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
 			ctx = canvas.getContext("2d");
 			canvas.addEventListener("mousedown", doMousedown);
 			canvas.addEventListener("mousemove", doMousemove);
@@ -76,7 +73,6 @@
 			 
 			 /* slider (just updates the text for now) */
 			 document.querySelector("#slider1").onchange = function(e){
-			 	console.log("value=" + e.target.value);
 			 	 document.querySelector("#sliderResults").innerHTML = e.target.value;
 				// YOUR COOL SLIDER CODE GOES HERE
 				//
@@ -87,7 +83,6 @@
 			 
 			 /* checkbox (just updates the text for now) */
 			document.getElementById('myCheckbox').onchange = function(e){
-				console.log("checked=" + e.target.checked);
 				boxChecked = e.target.checked;
 				var msg = "";
 				if( e.target.checked){
@@ -114,24 +109,28 @@
 		
 		function doMousedown(e){
 			// YOUR COOL MOUSEDOWN CODE GOES HERE
-			//
-			//
-			//
+			dragging = true;
+ 			mouse = getMouse(e);
+  			drawCircle(mouse.x,mouse.y,20,getRandomColor() );
 		}
 		
 		function doMousemove(e){
 			// YOUR COOL MOUSEMOVE CODE GOES HERE
-			//
-			//
-			//
+			if(dragging){
+  				var oldMouseX = mouse.x;
+  				var oldMouseY = mouse.y;
+  			
+  				mouse = getMouse(e);
+  				var distance = distanceBetween(oldMouseX,oldMouseY,mouse.x,mouse.y)
+  				// console.log(distance);
+  				drawCircle(mouse.x, mouse.y, distance/FUDGE_DIVISOR, getRandomColor() );
+  			}
 		}
 		
 
 		function doMouseleave(e){
   			// YOUR COOL MOUSELEAVE CODE GOES HERE
-			//
-			//
-			//
+			dragging = false;
 		}
 
 		
@@ -211,9 +210,8 @@
 </div>
 
 <div id="assignment">
-	<h2>Homework</h2>
-	<p>1) Enable the checkbox - checking it will cause all of the circles to be drawn at 50% alpha.</p>
-	<p>2) Create an additional variation of this <i>speed circle</i> theme, or on a similar theme such as <i>symmetry</i>. Tell us what the variation is so that we can read it right here: <em>** YOUR DESCRIPTION GOES HERE **</em></p>
+	<h1>Description</h1>
+	<p></p>
 </div>
 </body>
 </html>
