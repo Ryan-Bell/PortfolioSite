@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>Speed Circles 1</title>
+	<title>Speed Circles</title>
 	<style type="text/css">
 		body{
 			background: #dddddd;
@@ -30,36 +30,47 @@
 			margin-top: 10px;
 		}
 	</style>
-	
+	<script src="./tinycolor.js"></script>
 	<script>
 		"use strict";
 		
 		// global variables
-		var canvas,ctx,boxChecked=false,sliderValue=0.5, dragging, mouse;
+		var circles = [];
+		var canvas, ctx, boxChecked, sliderValue=0.5, dragging, mouse;
 		var FUDGE_DIVISOR = 2.5;
 		
 		/* init() is called when the page loads */
-		function init(){
+		function init() {
 			canvas = document.querySelector("#canvas");
-			canvas.width = window.innerWidth;
-			canvas.height = window.innerHeight;
 			ctx = canvas.getContext("2d");
-			canvas.addEventListener("mousedown", doMousedown);
-			canvas.addEventListener("mousemove", doMousemove);
-			canvas.addEventListener("mouseup",   doMouseup);
-			canvas.addEventListener("mouseleave",doMouseleave);
-			setupUI();
-		}
+
+			canvas.addEventListener("mouseleave", () => {
+				dragging = false;
+			});
+
+			canvas.addEventListener("mousedown",  (e) => {
+				dragging = true;
+				mouse = getMouse(e);
+			});
+
+			canvas.addEventListener("mouseup",    () => {
+				dragging = false;
+			});
+
+			canvas.addEventListener("mousemove", (e) => {
+				if(!dragging) return;
+
+				var oldMouseX = mouse.x;
+				var oldMouseY = mouse.y;
+			
+				mouse = getMouse(e);
+				var distance = distanceBetween(oldMouseX,oldMouseY,mouse.x,mouse.y)
+				var alpha = boxChecked ? 0.5 : 1.0;
+				drawCircle(mouse.x, mouse.y, distance/FUDGE_DIVISOR, getRandomColor(alpha));
+			});
 		
-		/* Hook up UI widgets to canvas */
-		function setupUI(){
-			/* clear button */
 			document.querySelector("#clearButton").onclick = clearCanvas; 
 			
-			
-			// The below event handlers are pointing at anonymous functions
-			
-			/* save button */
 			document.querySelector("#saveButton").onclick = function(e){
 				// open a new window and load the image in it
 				// http://www.w3schools.com/jsref/met_win_open.asp
@@ -70,94 +81,35 @@
 				myWindow.resizeTo(canvas.width,canvas.height); // needed so Chrome would display image
 			 };
 			 
-			 
-			 /* slider (just updates the text for now) */
-			 document.querySelector("#slider1").onchange = function(e){
-			 	 document.querySelector("#sliderResults").innerHTML = e.target.value;
-				// YOUR COOL SLIDER CODE GOES HERE
-				//
-				//
-				//
+			document.querySelector("#slider1").onchange = function(e){
+				 document.querySelector("#sliderResults").innerHTML = e.target.value;
+					
 			 };
 			 
-			 
-			 /* checkbox (just updates the text for now) */
 			document.getElementById('myCheckbox').onchange = function(e){
 				boxChecked = e.target.checked;
-				var msg = "";
-				if( e.target.checked){
-				 	msg = "checked";
-				}
-				document.querySelector("#checkboxResults").innerHTML = msg;
-				// YOUR COOL CHECKBOX CODE GOES HERE
-				//
-				//
-				//
+				document.querySelector("#checkboxResults").innerHTML = boxChecked ? "checked" : "";
 			};	
 			 
-			 
-		} // end function setupUI
-		
-		
-		/* MOUSE EVENTS */
-		
-		function doMouseup(e){
-  			var mouse = getMouse(e);
-				let alpha = boxChecked ? 0.5 : 1.0;
-  			drawCircle(mouse.x,mouse.y,50,getRandomColor(alpha));
 		}
 		
-		function doMousedown(e){
-			// YOUR COOL MOUSEDOWN CODE GOES HERE
-			dragging = true;
- 			mouse = getMouse(e);
-  			drawCircle(mouse.x,mouse.y,20,getRandomColor() );
-		}
-		
-		function doMousemove(e){
-			// YOUR COOL MOUSEMOVE CODE GOES HERE
-			if(dragging){
-  				var oldMouseX = mouse.x;
-  				var oldMouseY = mouse.y;
-  			
-  				mouse = getMouse(e);
-  				var distance = distanceBetween(oldMouseX,oldMouseY,mouse.x,mouse.y)
-  				// console.log(distance);
-  				drawCircle(mouse.x, mouse.y, distance/FUDGE_DIVISOR, getRandomColor() );
-  			}
-		}
-		
-
-		function doMouseleave(e){
-  			// YOUR COOL MOUSELEAVE CODE GOES HERE
-			dragging = false;
-		}
-
-		
-		/* CANVAS DRAWING CODE */
 		function drawCircle(x,y,radius,fillColor){
 			ctx.fillStyle = fillColor;
 			ctx.beginPath();
-			//  ctx.arc(x,y,radius,startAngle,endAngle, clockwise)
 			ctx.arc(x, y, radius, 0, Math.PI*2, false); 
-			ctx.closePath();
  			ctx.fill();
- 			ctx.stroke();
-		
 		}
 		
 		function  clearCanvas(){
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 		}
 		
-		/* HELPER FUNCTIONS */
-		
 		// adjusts coordinates of mouse over the window, to local mouse coordinates over the canvas
 		function getMouse(e){
-			var mouse = {}
-			mouse.x = e.pageX - e.target.offsetLeft;
-			mouse.y = e.pageY - e.target.offsetTop;
-			return mouse;
+			return {
+				'x' : e.pageX - e.target.offsetLeft,
+				'y' : e.pageY - e.target.offsetTop
+			};	
 		}
 		
 		// returns a random color of alpha 1.0
@@ -172,12 +124,16 @@
 		
 		// used to calculate how fast the mouse is moving
 		function distanceBetween(x1,y1,x2,y2){
-			var dx = x2 - x1;
-			var dy = y2 - y1;
+			const dx = x2 - x1;
+			const dy = y2 - y1;
 			return Math.sqrt(dx*dx + dy*dy);
 		}
-		
-	
+		function setColor(c){
+			console.log("hello");
+		}
+		function setScheme(c){
+			console.log("hi");
+		}
 		
 		window.onload = init;
 	</script>
@@ -202,6 +158,14 @@
 		</span>
 		<span style="float:right" id="checkboxResults">???</span>
 	</div>
+	<form action="">
+		Base Color: <input type="color" value="#337711" oninput="setColor(this.value)"><br>
+		<input name="scheme" type="radio" value="triad" onchange="setScheme(this.value)" > Triad <br>
+		<input name="scheme" type="radio" value="tetrad" onchange="setScheme(this.value)" > Tetrad<br>
+		<input name="scheme" type="radio" value="monochromatic" onchange="setScheme(this.value)" > Monochromatic<br>
+		<input name="scheme" type="radio" value="analogous" onchange="setScheme(this.value)" > Analogous<br>
+		<input name="scheme" type="radio" value="complements" onchange="setScheme(this.value)" > Complements
+	</form>
 	
 	<hr/>
 	<div>
