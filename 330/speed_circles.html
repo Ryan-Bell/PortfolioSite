@@ -38,7 +38,7 @@
 		var circles = [];
 		var paletteSize, palette;
 		setPalette(4);	
-		var canvas, ctx, boxChecked, sliderValue=0.5, dragging, mouse;
+		var canvas, ctx, boxChecked, sliderValue, dragging, mouse;
 		var FUDGE_DIVISOR = 2.5;
 		
 		/* init() is called when the page loads */
@@ -67,8 +67,9 @@
 			
 				mouse = getMouse(e);
 				var distance = distanceBetween(oldMouseX,oldMouseY,mouse.x,mouse.y)
-				var alpha = boxChecked ? 0.5 : 1.0;
-				drawCircle(mouse.x, mouse.y, distance/FUDGE_DIVISOR, getRandomPalette(alpha));
+				let color = getRandomPalette();
+				if(boxChecked) color.setAlpha(0.5);
+				drawCircle(mouse.x, mouse.y, distance/FUDGE_DIVISOR, color);
 			});
 		
 			document.querySelector("#clearButton").onclick = clearCanvas; 
@@ -85,7 +86,7 @@
 			 
 			document.querySelector("#slider1").onchange = function(e){
 				 document.querySelector("#sliderResults").innerHTML = e.target.value;
-					
+				 setPalette(e.target.value);		
 			 };
 			 
 			document.getElementById('myCheckbox').onchange = function(e){
@@ -116,13 +117,11 @@
 		
 		// returns a random color of alpha 1.0
 		// http://paulirish.com/2009/random-hex-color-code-snippets/
-		function getRandomColor(alpha){
-				alpha = alpha || 1.0;
-   			var red = Math.round(Math.random()*254+1);
+		function getRandomColor(){
+   			var red   = Math.round(Math.random()*254+1);
    			var green = Math.round(Math.random()*254+1);
-   			var blue=Math.round(Math.random()*254+1);
-   			var color='rgba('+red+','+green+','+blue+','+alpha+')'; // 0.50 alpha
-   			return color;
+   			var blue  = Math.round(Math.random()*254+1);
+   			return tinycolor('rgb('+red+','+green+','+blue+')');
 		}
 		function getRandomPalette(){
 			return palette[Math.floor(Math.random()*palette.length)];
@@ -145,6 +144,9 @@
 			paletteSize = +c;
 			palette = Array.apply(null, new Array(paletteSize)).map(getRandomColor);
 		}
+		function setType(c){
+			colorSet = c;
+		}
 		
 		window.onload = init;
 	</script>
@@ -158,20 +160,21 @@
 	</div>
 	
 	<div>
-		<label for="slider1">Unused Slider</label>
-		<input id="slider1" type ="range" min ="0.1" max="1.0" step ="0.1" value ="0.5"/>
+		<label for="slider1">Palette Size</label>
+		<input id="slider1" type ="range" min ="1" max="10" step ="1" value ="4"/>
 		<span style="float:right" id="sliderResults">???</span>
 	</div>
 	<div>
 		<span>
-			<label for="myCheckbox">Unused Checkbox</label>
+			<label for="myCheckbox">Opacity</label>
 			<input type="checkbox" id="myCheckbox">
 		</span>
 		<span style="float:right" id="checkboxResults">???</span>
 	</div>
-	Palette Size: <input type="text" value="4" name="" oninput="setPalette(this.value)"><br>
+	<hr>
 	<form action="">
-		Base Color: <input type="color" value="#337711" oninput="setColor(this.value)"><br>
+		Use Color Set<input type="checkbox" value="" name="" oninput="setType(this.value)"><br>
+		Base Color:  <input type="color" value="#337711" oninput="setColor(this.value)"><br>
 		<input name="scheme" type="radio" value="triad" onchange="setScheme(this.value)" > Triad <br>
 		<input name="scheme" type="radio" value="tetrad" onchange="setScheme(this.value)" > Tetrad<br>
 		<input name="scheme" type="radio" value="monochromatic" onchange="setScheme(this.value)" > Monochromatic<br>
