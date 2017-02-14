@@ -150,6 +150,15 @@
 				topCtx.strokeRect(x,y,w,h);
 				break;
 			case TOOL_LINE:
+				topCtx.strokeStyle = strokeStyle;
+				topCtx.fillStyle = fillStyle;
+				topCtx.lineWidth = lineWidth;
+
+				clearTopCanvas();
+				topCtx.beginPath();
+				topCtx.moveTo(origin.x, origin.y);
+				topCtx.lineTo(mouse.x, mouse.y);
+				topCtx.stroke();
 				break;
 		}
 	}
