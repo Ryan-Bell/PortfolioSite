@@ -64,6 +64,15 @@
 		canvas.onmousemove = doMousemove;
 		canvas.onmouseup = doMouseup;
 		canvas.onmouseout = doMouseout;
+
+		document.querySelector('#lineWidthChooser').onchange = function(e){
+			lineWidth = e.target.value;
+		}
+		document.querySelector('#strokeStyleChooser').onchange = function(e){
+			strokeStyle = e.target.value;
+		}
+		document.querySelector('#clearButton').onclick = doClear;
+		document.querySelector('#exportButton').onclick = doExport;
 	}
 	
 	
@@ -108,6 +117,7 @@
 	function doMouseout(e) {
 		console.log(e.type);
 	}
+
 	
 	function doClear(){
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -204,6 +214,15 @@
     		</select>
     	</label>
     	
+    	<label>Stroke Style: 
+			<select id="strokeStyleChooser">
+				<option value="blue">blue</option>
+				<option value="green">green</option>
+       	<option value="red" selected>red</option>
+       	<option value="yellow">yellow</option>
+				<option value="black">black</option>
+    	</select>
+    	</label>
     	
     	<span><input id="clearButton" type="button" value="Clear"/></span>
     	<span><input id="exportButton" type="button" value="Export"/></span>
