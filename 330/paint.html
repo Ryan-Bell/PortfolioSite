@@ -45,7 +45,7 @@
 	window.onload = init;
 	
 	// GLOBALS
-	var canvas,ctx,dragging=false,lineWidth,strokeStyle, currentTool, fillStyle, origin, topCanvas, topCtx;
+	var canvas,ctx,dragging=false,lineWidth,strokeStyle, currentTool, fillStyle, origin, topCanvas, topCtx, ls;
 	
 	// CONSTANTS
 	const DEFAULT_LINE_WIDTH = 3;
@@ -140,14 +140,22 @@
 				var w = Math.abs(mouse.x - origin.x);
 				var h = Math.abs(mouse.y - origin.y);
 
+				topCtx.globalAlpha = 0.3;	
 				topCtx.strokeStyle = strokeStyle;
 				topCtx.fillStyle = fillStyle;
 				topCtx.lineWidth = lineWidth;
 
 				clearTopCanvas();
 
+				ls = {
+					'x': x,
+					'y': y,
+					'w': w,
+					'h': h
+				};
 				topCtx.fillRect(x,y,w,h);
 				topCtx.strokeRect(x,y,w,h);
+				topCtx.globalAlpha = 1;	
 				break;
 			case TOOL_LINE:
 				topCtx.strokeStyle = strokeStyle;
@@ -169,6 +177,17 @@
 				ctx.closePath();
 				break;
 			case TOOL_RECTANGLE:
+				ctx.save();
+				ctx.beginPath();
+				ctx.strokeStyle = strokeStyle;
+				ctx.fillStyle = fillStyle;
+				ctx.lineWidth = lineWidth;
+
+				ctx.fillRect(ls.x,ls.y,ls.w,ls.h);
+				ctx.strokeRect(ls.x,ls.y,ls.w,ls.h);
+				ctx.closePath();
+				ctx.restore();
+
 			case TOOL_LINE:
 				if(dragging){
 					ctx.drawImage(topCanvas, 0,0);
