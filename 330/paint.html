@@ -18,7 +18,6 @@
          box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
       }
       
-      
        #controls {
          position: absolute;
           z-index: 2;
@@ -41,30 +40,68 @@
 	var canvas,ctx,dragging=false,lineWidth,strokeStyle;
 	
 	// CONSTANTS
-	
+	const DEFAULT_LINE_WIDTH = 3;
+	const DEFAULT_STROKE_STYLE = "red";	
 	
 	// FUNCTIONS
 	function init(){
 		// initialize some globals
 		canvas = document.querySelector('#mainCanvas');
 		ctx = canvas.getContext('2d');
-		
-		
-		
+		lineWidth = DEFAULT_LINE_WIDTH;
+		strokeStyle = DEFAULT_STROKE_STYLE;
+
+		//set initial properties of the graphics context
+		ctx.lineWidth = lineWidth;
+		ctx.strokeStyle = strokeStyle;
+		ctx.lineCap = 'round';
+		ctx.lineJoin = 'round';
+
+		drawGrid(ctx, 'lightgray', 10, 10);
+
+		//Hook up event listeners
+		canvas.onmousedown = doMousedown;
+		canvas.onmousemove = doMousemove;
+		canvas.onmouseup = doMouseup;
+		canvas.onmouseout = doMouseout;
 	}
 	
 	
 	// EVENT CALLBACK FUNCTIONS
 	function doMousedown(e){
-		console.log(e.type);
+		dragging = true;
+
+		//get location of mouse in canvas coordinates
+		var mouse = getMouse(e);
+
+		//Pencil tool
+		ctx.beginPath();
+
+		//move pen to xy of mouse
+		ctx.moveTo(mouse.x, mouse.y);
 	}
  
  	function doMousemove(e) {
- 		
+		//bail out if the mouse button is not down
+		if(!dragging) return;
+
+		//get location of mouse in canvas coordinates
+		var mouse = getMouse(e);
+
+		//pencil tool
+		ctx.strokeStyle = strokeStyle;
+		ctx.lineWidth = lineWidth;
+
+		//draw a line to xy of mouse
+		ctx.lineTo(mouse.x, mouse.y);
+
+		//stroke the line	
+		ctx.stroke();
 	}
 	
 	function doMouseup(e) {
-		console.log(e.type);
+		dragging = false;
+		ctx.closePath();
 	}
 	
 	// if the user drags out of the canvas
@@ -121,18 +158,16 @@
 		ctx.lineWidth = 0.5;
 		ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 		
-		// vertical lines all set!
-		for (var x = cellWidth + 0.5; x < ctx.canvas.width; x += cellWidth) {
+		let tiles = ctx.canvas.width > ctx.canvas.height ? ctx.canvas.width : ctx.canvas.width;
+		for (var x = cellWidth + 0.5; x < tiles; x += cellWidth) {
 			ctx.beginPath();
 			ctx.moveTo(x, 0);
-			ctx.lineTo(x, ctx.canvas.height);
+			ctx.lineTo(x, tiles);
+			ctx.moveTo(0, x);
+			ctx.lineTo(tiles, x);
 			ctx.stroke();
 		}
 		
-		/*
-			Need horizontal lines!
-			You write it!
-		*/
 		
 		
 		// restore the drawing state
