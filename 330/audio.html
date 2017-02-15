@@ -4,40 +4,51 @@
 	<meta charset="utf-8" />
 	<title>Web Audio Visualizer</title>
 	<style>
-	body {
+		body {
          background: #eeeeee;
          font-family: tahoma, verdana, sans serif;
+				 margin: auto;
       }
 
       canvas {
-        margin-left:10px;
-        margin-top:10px;
-        box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
-        background: black;
-    }
+        background: white;
+				margin-top: 20px;
+			}
       
       #controls{
-      	margin-left:10px;
         margin-top:10px;
       }
+			.container{
+				margin: auto;
+				position: relative;
+				width:1000px;
+				height: 1000px;
+			}
+			
 	</style>
 	<script>
 	// An IIFE ("Iffy") - see the notes in mycourses
 	(function(){
 		"use strict";
 		
-		var NUM_SAMPLES = 256;
-		var SOUND_1 = 'media/New Adventure Theme.mp3';
+		var NUM_SAMPLES = 1024;
+		var SOUND_1 = 'media/madeon.flac';
 		var SOUND_2 = 'media/Peanuts Theme.mp3';
-		var SOUND_3 = 'media/The Picard Song.mp3';
+		var SOUND = {};
+
 		var audioElement;
 		var analyserNode;
 		var canvas,ctx;
+		var radius = 200;
+		var WIDTH;
 		
 		function init(){
 			// set up canvas stuff
 			canvas = document.querySelector('canvas');
 			ctx = canvas.getContext("2d");
+			WIDTH = ctx.width;
+			SOUND[SOUND_1] = 'Madeon - Isometric (Intro)';
+			SOUND[SOUND_2] = 'Peanuts Theme';
 			
 			// get reference to <audio> element on page
 			audioElement = document.querySelector('audio');
@@ -65,6 +76,7 @@
 			
 			// create an analyser node
 			analyserNode = audioCtx.createAnalyser();
+			analyserNode.smoothingTimeConstant = 0.94;
 			
 			/*
 			We will request NUM_SAMPLES number of samples or "bins" spaced equally 
@@ -78,6 +90,7 @@
 			// fft stands for Fast Fourier Transform
 			analyserNode.fftSize = NUM_SAMPLES;
 			
+
 			// this is where we hook up the <audio> element to the analyserNode
 			sourceNode = audioCtx.createMediaElementSource(audioElement); 
 			sourceNode.connect(analyserNode);
@@ -85,7 +98,7 @@
 			// here we connect to the destination i.e. speakers
 			analyserNode.connect(audioCtx.destination);
 			return analyserNode;
-		}
+		};
 		
 		function setupUI(){
 			document.querySelector("#trackSelect").onchange = function(e){
@@ -95,13 +108,17 @@
 			document.querySelector("#fsButton").onclick = function(){
 				requestFullscreen(canvas);
 			};
-		}
+
+			document.querySelector('#radiusSlider').onclick = function(e){
+				radius = e.target.value;
+			};
+		};
 		
 		function playStream(audioElement,path){
 			audioElement.src = path;
 			audioElement.play();
 			audioElement.volume = 0.2;
-			document.querySelector('#status').innerHTML = "Now playing: " + path;
+			document.querySelector('#status').innerHTML = "Now playing: " + SOUND[path];
 		}
 		
 		function update() { 
@@ -125,7 +142,7 @@
 			//analyserNode.getByteTimeDomainData(data); // waveform data
 			
 			// DRAW!
-			ctx.clearRect(0,0,800,600);  
+			ctx.clearRect(0,0,1000,600);  
 			var barWidth = 4;
 			var barSpacing = 1;
 			var barHeight = 100;
@@ -133,12 +150,42 @@
 			
 			// loop through the data and draw!
 			for(var i=0; i<data.length; i++) { 
-				ctx.fillStyle = 'rgba(0,255,0,0.6)'; 
 				
-				// the higher the amplitude of the sample (bin) the taller the bar
-				// remember we have to draw our bars left-to-right and top-down
-				ctx.fillRect(i * (barWidth + barSpacing),topSpacing + 256-data[i],barWidth,barHeight); 
-				
+
+				//redish circles
+				var percent = data[i]/255;
+				var circleRadius = percent * radius;
+				ctx.beginPath();
+				ctx.fillStyle = makeColor(255, 111, 111, .34 - percent/3.0);
+				ctx.arc(canvas.width/2, canvas.height/2, circleRadius, 0, 2 * Math.PI, false);
+				ctx.fill();
+				ctx.closePath();
+
+				//blueish circles
+				ctx.beginPath();
+				ctx.fillStyle = makeColor(100,100,100, .10-percent/10.0);
+				ctx.arc(canvas.width/2, canvas.height/2, circleRadius * 1.5, 0, 2 * Math.PI, false);
+				ctx.fill();
+				ctx.closePath();
+
+				//yellowish circles
+				ctx.save();
+				ctx.beginPath();
+				ctx.fillStyle = makeColor(200, 200, 0, .5-percent/5.0);
+				ctx.arc(canvas.width/2, canvas.height/2, circleRadius * .5, 0, 2 * Math.PI, false);
+				ctx.fill();
+				ctx.closePath();
+				ctx.restore();
+
+
+			}
+			for(var i=0; i<data.length; i++) { 
+				ctx.strokeStyle = '#996';
+				ctx.fillStyle = '#e77';
+				ctx.beginPath();
+				ctx.arc(i * (barWidth + 5),topSpacing + 256-data[i], 5, 0, 2 * Math.PI, false);
+				ctx.fill();
+				ctx.stroke();
 			}
 			 
 		} 
@@ -170,18 +217,23 @@
 	</script>
 </head>
 <body>
-	<canvas id="canvas" width="640" height="400"></canvas>
+	<div class="container">
+	<canvas id="canvas" width="1000" height="600"></canvas>
 	<div id="controls">
-		<audio controls loop></audio>
+		<audio controls loop style="width: 100%"></audio>
+		<br>
+		<p id="status"style="float:right">???</p>
+		<br>
 		<label>Track: 
 			<select id="trackSelect" >
-				<option value="media/New Adventure Theme.mp3">New Adventure Theme</option>
+				<option value="media/madeon.flac">Madeon Intro</option>
 				<option value="media/Peanuts Theme.mp3">Peanuts Theme</option>
-				<option value="media/The Picard Song.mp3">The Picard Song</option>
 			</select>
 		</label>
-		<button id="fsButton">Go Full Screen</button><br>
-		<p id="status">???</p>
+		<button id="fsButton">Go Full Screen</button>
 	</div>
+	<br>
+	Circle Radius: <input id="radiusSlider" type="range" value="200" min="50" max="300" step="10"> 
+</div>
 </body>
 </html>
