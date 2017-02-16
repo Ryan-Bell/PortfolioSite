@@ -33,6 +33,13 @@ a{
 	height: 1020px;
 	padding-top: 70px;
 }
+#about a {
+	color: #3a92c8;
+	text-decoration: none;
+}
+#about a:hover {
+	text-decoration: underline;
+}
 #console{
 	border-radius: 5px;
 	width: 670px;
@@ -45,6 +52,9 @@ a{
 	font-family: 'Monaco', 'Courier New';
 	text-align: left;
 	
+}
+span.answer {
+	color: #ccc;
 }
 main{
     overflow: hidden;
