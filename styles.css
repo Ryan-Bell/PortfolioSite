@@ -29,7 +29,6 @@ a{
 }
 #about{
 	background-color: #c26868;
-	margin-top: 100px;
 	height: 1020px;
 	padding-top: 70px;
 }
@@ -39,6 +38,17 @@ a{
 }
 #about a:hover {
 	text-decoration: underline;
+}
+#about p{
+	text-align: center;
+	padding-top: 60px;
+	padding-bottom: 25px;
+	font-family: 'Open Sans', sans-serif;
+	letter-spacing: 0.3em;
+	font-weight: 700;
+	color: #fafafa;
+	font-size: 11px;
+	text-transform: uppercase;
 }
 #console{
 	border-radius: 5px;
@@ -56,8 +66,57 @@ a{
 span.answer {
 	color: #ccc;
 }
-main{
-    overflow: hidden;
+.tagline{
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	letter-spacing: 0.3em;
+	font-weight: 700;
+	padding-bottom: 50px;
+	font-size: 11px;
+	text-transform: uppercase;
+}
+#work{
+	background: #eee;
+	height: auto;
+	margin-top: -30px;
+	text-align: center;
+	padding: 60px 0 60px 0;
+	font-size: 26px;
+	line-height: 40px;
+}
+.row{
+	clear: both;
+}
+.portfolio-thumb {
+	width: 45%;
+	margin:20px;
+	background-color: white;
+	display: inline-block;
+}
+.portfolio-big {
+	width: 95%;
+}
+.portfolio-thumb img {
+	width: 100%;
+}
+.portfolio-thumb p {
+	font-size: 14px;
+	padding: 25px;
+	padding-top: 0px;
+	text-align: left;
+	line-height: 24px;
+}
+.portfolio-thumb a {
+	text-decoration: underline;
+}
+footer{
+	background: #fafafa;
+	min-height: 50px;
+	text-align: left;
+	color: #b1b1b1;
+	padding-top: 20px;
+	font-size: 12px;
+	line-height: 20px;
 }
 
 
