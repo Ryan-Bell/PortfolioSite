@@ -89,6 +89,7 @@ span.answer {
 	clear: both;
 }
 .portfolio-thumb {
+	border-radius: 5px;
 	width: 45%;
 	margin:20px;
 	background-color: white;
@@ -102,9 +103,12 @@ span.answer {
 }
 
 .portfolio-big {
+	border-radius: 5px;
 	width: 95%;
 }
 .portfolio-thumb img {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 	width: 100%;
 }
 .portfolio-thumb p {
@@ -141,6 +145,7 @@ footer{
 	margin-bottom: 0.5em;
 	display: block;
 	overflow: hidden;
+	border-radius: 5px;
 }
 
 @media screen and (max-width:860px){
