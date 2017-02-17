@@ -2,22 +2,22 @@ html{
 	font-size: 100%;
 }
 body{
-    margin: 0;
+		color: #333;
     font-family: 'Karla', Arial, sans-serif;
     line-height: 1.8em;
-		color: #333;
+    margin: 0;
 }
 header{
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	text-align: center;
-	letter-spacing: 0.2em;
 	background-color: #fafafa;
 	font-family: 'Montserrat', Arial, sans-serif;
 	font-size: 1.3em;
+	left: 0;
+	letter-spacing: 0.2em;
 	line-height: 100px;
+	position: fixed;
+	text-align: center;
+	top: 0;
+	width: 100%;
 	z-index: 100;
 }
 a{
@@ -41,62 +41,61 @@ a{
 	text-decoration: underline;
 }
 #about p{
-	text-align: center;
-	padding-top: 60px;
-	padding-bottom: 25px;
-	font-family: 'Open Sans', sans-serif;
-	letter-spacing: 0.3em;
-	font-weight: 700;
 	color: #fafafa;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 11px;
+	letter-spacing: 0.3em;
+	padding-bottom: 25px;
+	padding-top: 60px;
+	font-weight: 700;
+	text-align: center;
 	text-transform: uppercase;
 }
 #console{
+	background: #383737;
 	border-radius: 5px;
-	width: 670px;
+	color: #fafafa;
+	font-family: 'Monaco', 'Courier New';
+	font-size: 13px;
+	height: 800px;
 	margin: 0 auto;
 	padding:40px;
-	height: 800px;
-	background: #383737;
-	color: #fafafa;
-	font-size: 13px;
-	font-family: 'Monaco', 'Courier New';
 	text-align: left;
-	
+	width: 670px;
 }
 span.answer {
 	color: #ccc;
 }
 .tagline{
-	text-align: center;
 	font-family: 'Open Sans', sans-serif;
-	letter-spacing: 0.3em;
-	font-weight: 700;
-	padding-bottom: 50px;
 	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.3em;
+	padding-bottom: 50px;
+	text-align: center;
 	text-transform: uppercase;
 }
 #work{
 	background: #eee;
-	height: auto;
-	margin-top: -30px;
-	text-align: center;
-	padding: 60px 0 60px 0;
 	font-size: 26px;
+	height: auto;
 	line-height: 40px;
+	margin-top: -30px;
+	padding: 60px 0 60px 0;
+	text-align: center;
 }
 .row{
 	clear: both;
 }
 .portfolio-thumb {
-	border-radius: 5px;
-	width: 45%;
-	margin:20px;
 	background-color: white;
+	border-radius: 5px;
 	display: inline-block;
+	margin:20px;
   opacity:1;
     -webkit-transition:opacity .14s ease-out;
-    transition:opacity .14s ease-out;
+		transition:opacity .14s ease-out;
+	width: 45%;
 }
 .portfolio-thumb:hover {
     opacity:.8;
@@ -112,24 +111,24 @@ span.answer {
 	width: 100%;
 }
 .portfolio-thumb p {
+	display: block;
 	font-size: 14px;
+	line-height: 24px;
 	padding: 25px;
 	padding-top: 0px;
 	text-align: left;
-	line-height: 24px;
-	display: block;
 }
 .portfolio-thumb a {
 	text-decoration: underline;
 }
 footer{
 	background: #fafafa;
-	min-height: 50px;
-	text-align: center;
 	color: #b1b1b1;
-	padding-top: 20px;
 	font-size: 12px;
 	line-height: 20px;
+	min-height: 50px;
+	padding-top: 20px;
+	text-align: center;
 }
 .project-page{
 	margin: 60px auto;
@@ -140,12 +139,12 @@ footer{
 	padding-top: 30px;
 }
 .image-list img {
-	max-width: 100%;
+	border-radius: 5px;
+	display: block;
 	margin: 0 auto;
 	margin-bottom: 0.5em;
-	display: block;
+	max-width: 100%;
 	overflow: hidden;
-	border-radius: 5px;
 }
 
 @media screen and (max-width:860px){
@@ -156,8 +155,8 @@ footer{
 
 @media screen and (max-width:700px){
 	#console {
-		width: 100%;
 		overflow: hidden;
+		width: 100%;
 	}
 }
 @media screen and (max-width:750px){
@@ -165,9 +164,9 @@ footer{
 		width: 100%;
 	}
 	.project-meta{
+		float: none;
 		margin: 0 auto;
 		width: auto;
-		float: none;
 	}
 }
 
@@ -175,8 +174,8 @@ footer{
 	header {
 		line-height: 30px;
 		padding-top: 30px;
-		text-align: left;
 		padding-left: 10px;
 		padding-bottom: 15px;
+		text-align: left;
 	}
 }
