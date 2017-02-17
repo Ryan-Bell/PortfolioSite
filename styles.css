@@ -127,6 +127,21 @@ footer{
 	font-size: 12px;
 	line-height: 20px;
 }
+.project-page{
+	margin: 60px auto;
+	max-width: 900px;
+	padding-top: 60px;
+}
+.image-list {
+	padding-top: 30px;
+}
+.image-list img {
+	max-width: 100%;
+	margin: 0 auto;
+	margin-bottom: 0.5em;
+	display: block;
+	overflow: hidden;
+}
 
 @media screen and (max-width:860px){
 	.portfolio-thumb {
@@ -138,6 +153,16 @@ footer{
 	#console {
 		width: 100%;
 		overflow: hidden;
+	}
+}
+@media screen and (max-width:750px){
+	.project-page{
+		width: 100%;
+	}
+	.project-meta{
+		margin: 0 auto;
+		width: auto;
+		float: none;
 	}
 }
 

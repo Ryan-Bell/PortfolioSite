@@ -6,64 +6,29 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" type="text/css" href="./styles.css" />
 		<link rel="shortcut icon" type="image/x-icon" href="media/favicon.ico">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Rokkitt|Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700" rel='stylesheet'>
 		<title>Ryan Bell</title>
 	</head>
 	<body>
-		<h1><a href="./index.html">Ryan Bell</a></h1>
-		<main>
-			<div class = "project-page">
-				<div class = "project-meta">
-					<h2>Music Visualizer</h2>
-					<div class = "project-description">
-						<p>I made this music visualizer with Processing. The title, composed of small dots come into focus with the use of Guassian blur.</p>
-					</div>
-				</div>
-				<div class = "image-list">
-					<div class = "image">
-						<img src = "./media/musictitle.png">
-					</div>
-				</div>
-				<div class = "project-meta">
-					<div class = "project-description">
-						<p>The dots are placed randomly using an alpha mask of the title generated on startup. The title is disintegrated and the main visualizer is faded in.</p>
-					</div>
-				</div>
-				<div class = "image-list">
-					<div class = "image">
-						<img src = "./media/musicdisint.png">
-					</div>
-				</div>
-				<div class = "project-meta">
-					<div class = "project-description">
-						<p>The main music visualizer shows the waveform for the song at the top and the bottom as well as a large, stationary dot in the middle which pulsates based on the minim beat detection algorithm.</p>
-					</div>
-				</div>
-				<div class = "image-list">
-					<div class = "image">
-						<img src = "./media/musiccap1.png">
-					</div>
-				</div>
-				<div class = "project-meta">
-					<div class = "project-description">
-						<p>A spectrograph is also shown on the right and dots move from right to left in the background at different rates to give an illusion of movement. The dots differing size and speed make it look as if the large dot is floating through space.</p>
-					</div>
-				</div>                
-				<div class = "image-list">                    
-					<div class = "image">
-						<img src = "./media/musiccap2.png">
-					</div>
-				</div>
-				<div class = "project-meta">
-					<div class = "project-description">
-						<p>At the end of the song, the ID3 tags are pulled and information such as the song title, author, album and duration are shown.</p>
-					</div>
-				</div>                
-				<div class = "image-list">                    
-					<div class = "image">
-						<img src = "./media/musicend.png">
-					</div>
-				</div>
-			</div> 
-		</main>
+		<header>
+				<a class="inner" href="./index.html" >RYAN BELL</a>
+		</header>
+		<div class = "project-page">
+			<p class="tagline">Music Visualizer</p>
+			<div class = "image-list">
+				<p>I made this music visualizer with Processing. The title, composed of small dots come into focus with the use of Guassian blur.</p>
+				<img src = "./media/musictitle.png">
+				<p>The dots are placed randomly using an alpha mask of the title generated on startup. The title is disintegrated and the main visualizer is faded in.</p>
+				<img src = "./media/musicdisint.png">
+				<p>The main music visualizer shows the waveform for the song at the top and the bottom as well as a large, stationary dot in the middle which pulsates based on the minim beat detection algorithm.</p>
+				<img src = "./media/musiccap1.png">
+				<p>A spectrograph is also shown on the right and dots move from right to left in the background at different rates to give an illusion of movement. The dots differing size and speed make it look as if the large dot is floating through space.</p>
+				<img src = "./media/musiccap2.png">
+				<p>At the end of the song, the ID3 tags are pulled and information such as the song title, author, album and duration are shown.</p>
+				<img src = "./media/musicend.png">
+			</div>
+		</div>
 	</body>
 </html>
