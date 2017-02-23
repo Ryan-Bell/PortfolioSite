@@ -41,7 +41,7 @@
 		var radius = 200;
 		var WIDTH;
 
-		var invert = false, tintRed = false, noise = false, lines = false;
+		var invert = false, tintRed = false, noise = false, lines = false, bonus = false;
 		
 		function init(){
 			// set up canvas stuff
@@ -125,6 +125,9 @@
 			document.querySelector('#linesCheck').onclick = function(e){
 				lines = !lines;	
 			};
+			document.querySelector('#bonusCheck').onclick = function(e){
+				bonus = !bonus;
+			};
 		};
 		
 		function playStream(audioElement,path){
@@ -205,6 +208,7 @@
 		} 
 
 		function manipulatePixels(){
+			if(!tintRed && !invert && !noise && !lines && !bonus) return;
 			var imageData = ctx.getImageData(0,0,canvas.width, canvas.height);
 			var data = imageData.data;
 			var length = data.length;
@@ -231,6 +235,14 @@
 						data[i+(width*4)] = data[i+(width*4) + 1] = data[i + (width*4) + 2] = data[i + (width*4) + 3] =255;
 					}
 				}
+				if(bonus){
+					var xval = (i/4) % canvas.width;
+					var yval = Math.floor((i/4) / canvas.width);
+					var grayVal = dist(canvas.width/2, canvas.height/2, xval, yval) / dist(0,0,canvas.width/2, canvas.height/2) * 255;
+					data[i] -= grayVal;
+					data[i+1] -= grayVal;
+					data[i+2] -= grayVal;
+				}
 			}
 			ctx.putImageData(imageData, 0, 0);
 		}
@@ -239,6 +251,11 @@
 		function makeColor(red, green, blue, alpha){
    			var color='rgba('+red+','+green+','+blue+', '+alpha+')';
    			return color;
+		}
+		function dist(x,y,x1,y1){
+			var a = x - x1;
+			var b = y - y1;
+			return Math.sqrt(a*a + b*b);
 		}
 		
 		 // FULL SCREEN MODE
@@ -283,6 +300,7 @@
 	Invert Colors: <input type="checkbox" id="invertCheck"><br>
 	Noise: <input type="checkbox" id="noiseCheck"><br>
 	Lines: <input type="checkbox" id="linesCheck"><br>
+	Framerate Killer: <input type="checkbox" id="bonusCheck"><br>
 </div>
 </body>
 </html>
