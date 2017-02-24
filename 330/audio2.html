@@ -31,7 +31,7 @@
 		"use strict";
 		
 		var NUM_SAMPLES = 1024;
-		var SOUND_1 = 'media/madeon.flac';
+		var SOUND_1 = 'media/Comics.mp3';
 		var SOUND_2 = 'media/Peanuts Theme.mp3';
 		var SOUND = {};
 
@@ -48,7 +48,7 @@
 			canvas = document.querySelector('canvas');
 			ctx = canvas.getContext("2d");
 			WIDTH = ctx.width;
-			SOUND[SOUND_1] = 'Madeon - Isometric (Intro)';
+			SOUND[SOUND_1] = 'Caravan Palace - Comics';
 			SOUND[SOUND_2] = 'Peanuts Theme';
 			
 			// get reference to <audio> element on page
@@ -288,7 +288,7 @@
 		<br>
 		<label>Track: 
 			<select id="trackSelect" >
-				<option value="media/madeon.flac">Madeon Intro</option>
+				<option value="media/Comics.mp3">Comics</option>
 				<option value="media/Peanuts Theme.mp3">Peanuts Theme</option>
 			</select>
 		</label>
