@@ -1,7 +1,12 @@
 // All of these functions are in the global scope
 		
 "use strict";
-
+function circlesIntersect(c1,c2){
+	var dx = c2.x - c1.x;
+	var dy = c2.y - c1.y;
+	var distance = Math.sqrt(dx*dx + dy*dy);
+	return distance < c1.radius + c2.radius;
+}
 function pointInsideCircle(x,y,I){
 	var dx = x - I.x;
 	var dy = y - I.y;

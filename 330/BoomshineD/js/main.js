@@ -120,11 +120,11 @@ app.main = {
 		this.ctx.fillRect(0,0,this.WIDTH,this.HEIGHT); 
 	
 		// ii) draw circles
-		this.globalAlpha = 0.9;
+		this.ctx.globalAlpha = 0.9;
 		this.drawCircles(this.ctx);	
 	
 		// iii) draw HUD
-		this.globalAlpha = 1.0;
+		this.ctx.globalAlpha = 1.0;
 		this.drawHUD(this.ctx);
 		
 		
@@ -262,6 +262,11 @@ app.main = {
 			return;
 		}
 		if(app.main.gameState === app.main.GAME_STATE.EXPLODING) return;
+		if(app.main.gameState == app.main.GAME_STATE.ROUND_OVER){
+			app.main.gameState = app.main.GAME_STATE.DEFAULT;
+			app.main.reset();
+			return;
+		}
 		var mouse = getMouse(e);
 		app.main.checkCircleClicked(mouse);
 	},
@@ -279,10 +284,59 @@ app.main = {
 		}
 	},
 	checkForCollisions: function(){
-		//TODO
+		if(this.gameState == this.GAME_STATE.EXPLODING){
+			for(var i =0; i < this.circles.length; i++){
+				var c1 = this.circles[i];
+				if(c1.state === this.CIRCLE_STATE.NORMAL) continue;
+				if(c1.state === this.CIRCLE_STATE.DONE) continue;
+				for(var j=0;j<this.circles.length; j++){
+					var c2 = this.circles[j];
+					if(c1===c2) continue;
+					if(c2.state != this.CIRCLE_STATE.NORMAL) continue;
+					if(c2.state === this.CIRCLE_STATE.DONE) continue;
+
+					if(circlesIntersect(c1, c2)){
+						c2.state = this.CIRCLE_STATE.EXPLODING;
+						c2.xSpeed = c2.ySpeed = 0;
+						this.roundScore++;
+					}
+				}
+			}
+
+			var isOver = true;
+			for(var i =0;i<this.circles.length; i++){
+				var c = this.circles[i];
+				if(c.state != this.CIRCLE_STATE.NORMAL && c.state != this.CIRCLE_STATE.DONE){
+					isOver = false;
+					break;
+				}
+			}
+
+			if(isOver){
+				this.gameState = this.GAME_STATE.ROUND_OVER;
+				this.totalScore += this.roundScore;
+			}
+		}
 	},
 	drawHUD: function(ctx){
+		ctx.save();
+		ctx.globalAlpha = 1.0;
 		this.fillText('This Round: ' + this.roundScore + ' of ' + this.numCircles, 20,20,'14pt courier','#ddd');
 		this.fillText('Total Score: ' + this.totalScore, this.WIDTH - 200, 20, '14pt courier', '#ddd');	
+
+		if(this.gameState == this.GAME_STATE.BEGIN){
+			ctx.textAlign = 'center';
+			ctx.textBaseline = 'middle';
+			this.fillText('To begin, click a circle', this.WIDTH/2, this.HEIGHT/2, '30pt courier', 'white');
+		} 
+		if(this.gameState == this.GAME_STATE.ROUND_OVER){
+			ctx.save();
+			ctx.textAlign = 'center';
+			ctx.textBaseline = 'middle';
+			this.fillText('Round Over', this.WIDTH/2, this.HEIGHT/2 - 40, '30pt courier', 'red');
+			this.fillText('Click to Continue', this.WIDTH/2, this.HEIGHT/2, '30pt courier', 'red');
+			this.fillText('Next round there are ' + (+this.numCircles + 5) + ' circles', this.WIDTH/2, this.HEIGHT/2 + 40, '15pt courier', 'red');
+		}
+		ctx.restore();
 	}
 }; // end app.main
