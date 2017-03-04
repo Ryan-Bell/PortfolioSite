@@ -30,11 +30,7 @@ app.main = {
 		roundScore: 0,
 		totalScore: 0,
 
-		bgAudio: undefined,
-		effectAudio: undefined,
-		currentEffect: 0,
-		currentDirection: 1,
-		effectSouds: ['1.mp3', '2.mp3', '3.mp3', '4.mp3', '5.mp3', '6.mp3', '7.mp3', '8.mp3'],
+		sound: undefined,
 
 		CIRCLE_STATE: {
 			NORMAL: 0,
@@ -78,11 +74,6 @@ app.main = {
 		this.circles = this.makeCircles(this.numCircles);
 		this.canvas.onmousedown = this.doMousedown.bind(this);
 	
-		this.bgAudio = document.querySelector('#bgAudio');
-		this.bgAudio.volume = 0.25;
-		this.effectAudio = document.querySelector('#effectAudio');
-		this.effectAudio.volume = 0.3;
-
 		this.gameState = this.GAME_STATE.BEGIN;
 		this.reset();
 		// start the game loop
@@ -135,6 +126,13 @@ app.main = {
 		if (this.debug){
 			// draw dt in bottom right corner
 			this.fillText(this.ctx, "dt: " + dt.toFixed(3), this.WIDTH - 150, this.HEIGHT - 10, "18pt courier", "white");
+		}
+
+		if(this.gameState == this.GAME_STATE.BEGIN || this.gameState == this.GAME_STATE.ROUND_OVER){
+			if(myKeys.keydown[myKeys.KEYBOARD.KEY_UP] && myKeys.keydown[myKeys.KEYBOARD.KEY_SHIFT]){
+				this.totalScore++;
+				this.sound.playEffect();
+			}
 		}
 		
 	},
@@ -265,7 +263,7 @@ app.main = {
 		ctx.restore();
 	},
 	doMousedown: function(e){
-		this.bgAudio.play();
+		this.sound.playBGAudio();
 		if(this.paused){
 			this.paused = false;
 			this.update();
@@ -284,7 +282,7 @@ app.main = {
 		for(var i = this.circles.length - 1; i>=0; i--){
 			var c = this.circles[i];
 			if( pointInsideCircle(mouse.x, mouse.y, c)){
-				this.playEffect();
+				this.sound.playEffect();
 				c.xSpeed = c.ySpeed = 0;
 				c.state = this.CIRCLE_STATE.EXPLODING;
 				this.gameState = this.GAME_STATE.EXPLODING;
@@ -306,7 +304,7 @@ app.main = {
 					if(c2.state === this.CIRCLE_STATE.DONE) continue;
 
 					if(circlesIntersect(c1, c2)){
-						this.playEffect();
+						this.sound.playEffect();
 						c2.state = this.CIRCLE_STATE.EXPLODING;
 						c2.xSpeed = c2.ySpeed = 0;
 						this.roundScore++;
@@ -360,21 +358,10 @@ app.main = {
 	resumeGame: function(){
 		cancelAnimationFrame(this.animationID);
 		this.paused = false;
-		this.bgAudio.play();
+		this.sound.playBGAudio();
 		this.update();	
 	},
 	stopBGAudio: function(){
-		this.bgAudio.pause();
-		this.bgAudio.currentTime = 0;	
-	},
-	playEffect: function(){
-		this.effectAudio.src = 'media/' + this.effectSouds[this.currentEffect];
-		this.effectAudio.play();
-
-		this.currentEffect += this.currentDirection;
-		if(this.currentEffect == this.effectSouds.length || this.currentEffect == -1){
-			this.currentDirection *= -1;
-			this.currentEffect += this.currentDirection;
-		}
+		this.sound.stopBGAudio();
 	}
 }; // end app.main

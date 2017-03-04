@@ -35,7 +35,15 @@ app.sound = (function(){
 			currentEffect += currentDirection;
 		}
 	}
+	function playBGAudio(){
+		bgAudio.play();
+	}
 		
 	// export a public interface to this module
-	// TODO
+	return {
+		init: init,
+		stopBGAudio: stopBGAudio,
+		playEffect: playEffect,
+		playBGAudio: playBGAudio
+	};
 }());
