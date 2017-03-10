@@ -3,12 +3,35 @@
 <head>
 	<meta charset="utf-8" />
 	<style>
-		canvas{border:1px solid gray;}
-		#audioControls { display: none;}
+		canvas{
+			border:1px solid gray;
+			position: absolute;
+			top: 5px;
+			left: 5px;
+			z-index:0;
+		}
+		#button1{
+			font-size:24pt;
+			border-radius: 15px;
+			position: absolute;
+			top: 150px;
+			left: 270px;
+			z-index: 1;
+		}
+		#button1:hover{
+			background-color:#fff;
+		}
+		button:focus{
+			outline: 0;
+		}
+		#audioControls { 
+			display: none;
+		}
 	</style>
 	<title>Boomshine</title>
 </head>
 <body>
+	<button id='button1'>Click Me</button>
 	<canvas>
 		Get a real browser!
 	</canvas>

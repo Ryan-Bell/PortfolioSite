@@ -25,6 +25,7 @@ app.main = {
     debug: true,
 		paused: false,
 		animationID: 0,
+		myKeys: undefined,
 
 		gameState: undefined,
 		roundScore: 0,
@@ -63,7 +64,6 @@ app.main = {
 
     // methods
 	init : function() {
-		console.log("app.main.init() called");
 		// initialize properties
 		this.canvas = document.querySelector('canvas');
 		this.canvas.width = this.WIDTH;
@@ -129,7 +129,7 @@ app.main = {
 		}
 
 		if(this.gameState == this.GAME_STATE.BEGIN || this.gameState == this.GAME_STATE.ROUND_OVER){
-			if(myKeys.keydown[myKeys.KEYBOARD.KEY_UP] && myKeys.keydown[myKeys.KEYBOARD.KEY_SHIFT]){
+			if(this.myKeys.keydown[this.myKeys.KEYBOARD.KEY_UP] && this.myKeys.keydown[this.myKeys.KEYBOARD.KEY_SHIFT]){
 				this.totalScore++;
 				this.sound.playEffect();
 			}
@@ -270,12 +270,14 @@ app.main = {
 			return;
 		}
 		if(this.gameState === this.GAME_STATE.EXPLODING) return;
-		if(this.gameState == this.GAME_STATE.ROUND_OVER){
+		var mouse = getMouse(e);
+		var rect = {x:295, y:215, width:50, height:50}
+		if(this.gameState == this.GAME_STATE.ROUND_OVER && rectangleContainsPoint(rect, mouse)){
 			this.gameState = this.GAME_STATE.DEFAULT;
 			this.reset();
 			return;
 		}
-		var mouse = getMouse(e);
+
 		this.checkCircleClicked(mouse);
 	},
 	checkCircleClicked: function(mouse){
@@ -339,13 +341,17 @@ app.main = {
 			ctx.textBaseline = 'middle';
 			this.fillText(this.ctx, 'To begin, click a circle', this.WIDTH/2, this.HEIGHT/2, '30pt courier', 'white');
 		} 
+		document.querySelector('#button1').style.display = 'none';
 		if(this.gameState == this.GAME_STATE.ROUND_OVER){
+			document.querySelector('#button1').style.display = 'inline';
 			ctx.save();
 			ctx.textAlign = 'center';
 			ctx.textBaseline = 'middle';
 			this.fillText(this.ctx, 'Round Over', this.WIDTH/2, this.HEIGHT/2 - 40, '30pt courier', 'red');
 			this.fillText(this.ctx, 'Click to Continue', this.WIDTH/2, this.HEIGHT/2, '30pt courier', 'red');
 			this.fillText(this.ctx, 'Next round there are ' + (+this.numCircles + 5) + ' circles', this.WIDTH/2, this.HEIGHT/2 + 40, '15pt courier', 'red');
+			ctx.fillStyle = 'yellow';
+			ctx.fillRect(295, 215, 50,50);
 		}
 		ctx.restore();
 	},

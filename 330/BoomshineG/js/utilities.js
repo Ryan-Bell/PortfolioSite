@@ -1,6 +1,13 @@
 // All of these functions are in the global scope
+
 		
 "use strict";
+function rectangleContainsPoint(rect, point){
+	if(rect.width <= 0 || rect.height <= 0){
+		return false;
+	}
+	return (point.x >= rect.x && point.x <= rect.x + rect.width && point.y >= rect.y && point.y <= rect.y + rect.height);
+}
 function circlesIntersect(c1,c2){
 	var dx = c2.x - c1.x;
 	var dy = c2.y - c1.y;
