@@ -79,6 +79,19 @@ app.main = {
 		this.exhaust.green = 150;
 		this.exhaust.createParticles({x: 100, y: 100});
 
+
+		this.pulsar = new this.Emitter();
+		this.pulsar.red = 255;
+		this.pulsar.minXspeed = this.pulsar.minYspeed = -0.25;
+		this.pulsar.maxXspeed = this.pulsar.maxYspeed = 0.25;
+		this.pulsar.lifetime = 500;
+		this.pulsar.expansionRate = 0.05;
+		this.pulsar.numParticles = 100;
+		this.pulsar.xRange = 1;
+		this.pulsar.yRange = 1;
+		this.pulsar.useCircles = false;
+		this.pulsar.useSquares = true;
+		this.pulsar.createParticles({x:540, y:100});
 		
 		this.numCircles = this.CIRCLE.NUM_CIRCLES_START;
 		this.circles = this.makeCircles(this.numCircles);
@@ -200,6 +213,24 @@ app.main = {
 			c.draw = circleDraw;
 			c.move = circleMove;
 
+			//pulsar
+			var pulsar = new this.Emitter();
+			pulsar.red = 255;
+			pulsar.green = Math.floor(getRandom(0,255));
+			pulsar.blue = Math.floor(getRandom(0,255));
+
+			pulsar.minXspeed = pulsar.minYspeed = -0.25;
+			pulsar.maxXspeed = pulsar.maxYspeed = 0.25;
+			pulsar.lifetime = 500;
+			pulsar.expansionRate = 0.05;
+			pulsar.numParticles = 50;
+			pulsar.xRange = 1;
+			pulsar.yRange = 1;
+			pulsar.useCircles = false;
+			pulsar.useSquares = true;
+			pulsar.createParticles({x:540, y:100});
+			c.pulsar = pulsar;
+
 			Object.seal(c);
 			array.push(c);
 		}
@@ -210,6 +241,7 @@ app.main = {
 		for(var i = 0; i< this.circles.length; i++){
 			var c = this.circles[i];
 			if(c.state == this.CIRCLE_STATE.DONE) continue;
+			if(c.pulsar) c.pulsar.updateAndDraw(ctx, {x:c.x, y:c.y});
 			c.draw(ctx);
 		}
 	},
@@ -352,6 +384,7 @@ app.main = {
 			this.fillText(this.ctx, 'To begin, click a circle', this.WIDTH/2, this.HEIGHT/2, '30pt courier', 'white');
 
 			this.exhaust.updateAndDraw(ctx, {x: 100, y:100});
+			this.pulsar.updateAndDraw(ctx, {x: 540, y:100});
 		} 
 		document.querySelector('#button1').style.display = 'none';
 		if(this.gameState == this.GAME_STATE.ROUND_OVER){
