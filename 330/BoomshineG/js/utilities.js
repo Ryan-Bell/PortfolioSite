@@ -29,6 +29,8 @@ function getMouse(e){
 }
 
 function getRandom(min, max) {
+		min = +min;
+		max = +max;
   	return Math.random() * (max - min) + min;
 }
 

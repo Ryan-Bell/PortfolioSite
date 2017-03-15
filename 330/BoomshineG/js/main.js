@@ -26,6 +26,9 @@ app.main = {
 		paused: false,
 		animationID: 0,
 		myKeys: undefined,
+		Emitter: undefined,
+		pulsar: undefined,
+		exhaust: undefined,
 
 		gameState: undefined,
 		roundScore: 0,
@@ -69,6 +72,13 @@ app.main = {
 		this.canvas.width = this.WIDTH;
 		this.canvas.height = this.HEIGHT;
 		this.ctx = this.canvas.getContext('2d');
+
+		this.exhaust = new this.Emitter();
+		this.exhaust.numParticles = 100;
+		this.exhaust.red = 255;
+		this.exhaust.green = 150;
+		this.exhaust.createParticles({x: 100, y: 100});
+
 		
 		this.numCircles = this.CIRCLE.NUM_CIRCLES_START;
 		this.circles = this.makeCircles(this.numCircles);
@@ -340,6 +350,8 @@ app.main = {
 			ctx.textAlign = 'center';
 			ctx.textBaseline = 'middle';
 			this.fillText(this.ctx, 'To begin, click a circle', this.WIDTH/2, this.HEIGHT/2, '30pt courier', 'white');
+
+			this.exhaust.updateAndDraw(ctx, {x: 100, y:100});
 		} 
 		document.querySelector('#button1').style.display = 'none';
 		if(this.gameState == this.GAME_STATE.ROUND_OVER){
