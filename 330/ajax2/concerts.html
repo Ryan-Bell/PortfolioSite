@@ -33,12 +33,14 @@
 					var title = event.querySelector('title').firstChild.nodeValue;
 					var city = event.querySelector('city').firstChild.nodeValue;
 					var startDate = event.querySelector('startDate').firstChild.nodeValue;
+					var img = event.querySelectorAll('image');
+					img = img[img.length -1].firstChild.nodeValue;
 					
 
 					html += "<div class='joke'>";
 					html += "<h3>" + title + "</h3>";
-					html += "<p><em>" + city + "</em></p>";
-					html += "<p>Rating = " + startDate + "</p>";
+					html += "<p>" + city + " -- " + startDate + "</p>";
+					html += "<img src='" + img + "'></img>"
 					html += "</div>";
 
 					document.querySelector('#content').innerHTML = html;
@@ -58,7 +60,7 @@
 	</script>
 </head>
 <body>
-	<h1>Jokes!</h1>
+	<h1>Taylor Swift</h1>
 	<p><button id='mybutton'>Fetch Data</button></p>
 	<div id='content'></div>
 	
