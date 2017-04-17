@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>XHR XML Example</title>
+	<style>
+		*{
+			font-family:tahoma,verdana,sans-serif;
+		}
+	</style>
+	<script>
+	
+	"use strict";
+	
+	(function(){
+		window.onload = init;
+		
+		function init(){
+			document.querySelector('#mybutton').onclick = loadData;
+		}
+		
+		function loadData(){
+			var xhr = new XMLHttpRequest();
+			var allEvents =[];
+
+			xhr.onload = function(){
+				var html = "<h2>Here are the movies!</h2>";
+				var xml = xhr.responseXML;
+				var allEvents = xml.querySelectorAll('movie');
+
+				for(var i = 0; i< allEvents.length; i++){
+					var event = allEvents[i];
+					//title
+					var title = event.getAttribute('title');
+					//year
+					var year = event.getAttribute('year');
+					//rated
+					var rated = event.getAttribute('rated');
+					//released
+					var released = event.getAttribute('released');
+					//runtime
+					var runtime = event.getAttribute('runtime');
+					//genre
+					var genre = event.getAttribute('genre');
+					//director
+					var director = event.getAttribute('director');
+					//actors
+					var actors = event.getAttribute('actors');
+  					//plot
+					var plot = event.getAttribute('plot');
+					//poster
+					var poster = event.getAttribute('poster')
+					//metascore
+					var metascore = event.getAttribute('metascore');
+
+					html += '<div>';
+					html += '<h2>' + title + '</h2>';
+					html += '<p>' + year + '&nbsp;&nbsp;&nbsp;&nbsp;' + rated + '&nbsp;&nbsp;&nbsp;&nbsp;' + runtime + '</p>';
+					html += '<p>Released: ' + released + '&nbsp;&nbsp;&nbsp;&nbsp;Genre: ' + genre + '</p>';
+					html += '<p>Metascore: ' + metascore + '</p>';
+					html += '<p>Director: ' + director + '</p>';
+					html += '<p>Actors: ' + actors + '</p>';
+					html += '<p>' + plot + '</p>';
+					html += '<img src="' + poster + '"></img>'
+
+					html += '</div>';
+
+
+					document.querySelector('#content').innerHTML = html;
+				}
+			}
+			
+			var url = "movies.xml";
+			xhr.open('GET',url,true);
+			// try to prevent browser caching by sending a header to the server
+			xhr.setRequestHeader("If-Modified-Since", "Sat, 1 Jan 2010 00:00:00 GMT");
+			xhr.send();
+		}
+		
+		
+	
+	}())
+	</script>
+</head>
+<body>
+	<h1>Movies</h1>
+	<p><button id='mybutton'>Fetch Data</button></p>
+	<div id='content'></div>
+	
+</body>
+</html>
