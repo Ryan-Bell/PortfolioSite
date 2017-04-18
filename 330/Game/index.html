@@ -10,6 +10,8 @@
             }
         </style>
         <script src="utils/keys.js"></script>
+        <script src='utils/animation.js'></script>
+        <script src='scripts/player.js'></script>
         <script>
             function resize(canvas){
                 canvas.width = window.innerWidth;
@@ -21,116 +23,16 @@
                 img.src = path;
                 return img;
             }
-            function sprite(options){
-                
-                let o = {
-                    filename: options.filename,
-                    width : options.width,
-                    height: options.height,
-                    directionCount: options.directionCount,
-                    frame_count : options.frame_count,
-                    animation_speed : options.animation_speed,
-                    shift : options.shift,
-                    frame : 0,
-                    tick : 0,
-                    img : undefined,
-                    loadImage : function(){
-                        o.img = loadImage(o.filename);
-                    },
-                    //TODO: this needs to be time based and the animation speed may be off
-                    update : function(){
-                        if(++o.tick > o.animation_speed){
-                            o.tick = 0;
-                            if(++o.frame >= o.frame_count)
-                                o.frame = 0;
-                        }
-                    },
-                    clear : function(ops){
-                        ops.x = ops.x || 0;
-                        ops.y = ops.y || 0;
-                        ops.context.clearRect(ops.x, ops.y, o.width, o.height);
-                    },
-                    render : function(ops){
-                        ops.x = ops.x || 0;
-                        ops.y = ops.y || 0;
-                        ops.row = ops.row || 0;
-                        ops.context.drawImage(
-                            o.img,
-                            o.frame * o.width,
-                            ops.row * o.height,
-                            o.width,
-                            o.height,
-                            ops.x,
-                            ops.y,
-                            o.width,
-                            o.height);
-
-                    }
-                };
-                return o;
-            }
-
+            
             window.onload = () => {
                 let canvas = document.getElementById('canvas1');
                 resize(canvas);
                 let context = canvas.getContext('2d');
-
-                //TODO: player should be in its own file and the animation/sprites should also be separated
-                let player = {
-                    x: canvas.width/2,
-                    y: canvas.height/2,
-                    direction: 0
-                };
-                player.idle = sprite({
-                    filename : "./base/graphics/entity/player/player-basic-idle.png",      
-                    width : 53,
-                    height : 73,
-                    direction_count : 8,
-                    frame_count : 22,
-                    animation_speed : 0.15,
-                    shift : [0, -0.5]
-                });
-                player.running = sprite({
-                    filename : "./base/graphics/entity/player/player-basic-run.png",
-                    width : 48,
-                    height : 71,
-                    frame_count : 22,
-                    direction_count : 8,
-                    shift : [0, -0.484375],
-                    //distance_per_frame : 0.35,
-                    animation_speed : 0.60
-                });
-                player.animation = player.idle;
-
-                player.update = function(){
-                    //erase old player before updating position
-                    this.animation.clear({context: context, x: this.x, y: this.y});
-                    
-                    //TODO: fix the nested key atrosity
-                    if(keydown[KEYBOARD.KEY_UP]){
-                        this.y--;
-                        this.direction = 0;
-                        this.animation = this.running;
-                    }
-                    else if(keydown[KEYBOARD.KEY_DOWN]){
-                        this.y++;
-                        this.direction = 4;
-                        this.animation = this.running;
-                    }
-                    else {
-                       this.animation = this.idle; 
-                    }
-                    this.animation.update();
-                };
-                player.render = function(){
-                    this.animation.render({context: context, row: this.direction, x: this.x, y: this.y});
-                };
+                let player = createPlayer(canvas.width/2, canvas.height/2);
                 //TODO: better asset loading
                 player.idle.loadImage();
                 player.running.loadImage();
 
-
-                
                 function gameloop(){
                     player.update(context);
                     player.render(context);
