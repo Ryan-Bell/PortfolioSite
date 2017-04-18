@@ -28,7 +28,9 @@
                 let canvas = document.getElementById('canvas1');
                 resize(canvas);
                 let context = canvas.getContext('2d');
+                
                 let player = createPlayer(canvas.width/2, canvas.height/2);
+
                 //TODO: better asset loading
                 player.idle.loadImage();
                 player.running.loadImage();

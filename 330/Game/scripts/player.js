@@ -29,7 +29,8 @@ player.update = function(context){
     //erase old player before updating position
     this.animation.clear({context: context, x: this.x, y: this.y});
     
-    //TODO: fix the nested key atrosity
+    
+    this.animation = this.idle; 
     if(keydown[KEYBOARD.KEY_UP]){
         this.y--;
         this.direction = 0;
@@ -40,9 +41,34 @@ player.update = function(context){
         this.direction = 4;
         this.animation = this.running;
     }
-    else {
-        this.animation = this.idle; 
+    //TODO: how to avoid??
+    else{
+        this.direction = -1;
     }
+    if(keydown[KEYBOARD.KEY_LEFT]){
+        this.x--;
+        let map = {
+            '-1' : '6',
+            '0' : '7',
+            '4' : '5'
+        };
+        this.direction = map[this.direction];
+        
+        this.animation = this.running;
+    }
+    else if(keydown[KEYBOARD.KEY_RIGHT]){
+        this.x++;
+
+         let map = {
+            '-1' : '2',
+            '0' : '1',
+            '4' : '3'
+        };
+        this.direction = map[this.direction];
+        
+        this.animation = this.running;
+    }
+    if(this.direction < 0) this.direction = 0;
     this.animation.update();
 };
 player.render = function(context){
