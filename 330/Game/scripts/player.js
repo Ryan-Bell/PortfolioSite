@@ -2,7 +2,8 @@
  let player = {
     x: x,
     y: y,
-    direction: 0
+    direction: 0,
+    speed : 3.5
 };
 player.idle = sprite({
     filename : "./base/graphics/entity/player/player-basic-idle.png",      
@@ -32,12 +33,12 @@ player.update = function(context){
     
     this.animation = this.idle; 
     if(keydown[KEYBOARD.KEY_UP]){
-        this.y--;
+        this.y -= this.speed;
         this.direction = 0;
         this.animation = this.running;
     }
     else if(keydown[KEYBOARD.KEY_DOWN]){
-        this.y++;
+        this.y +=  this.speed;
         this.direction = 4;
         this.animation = this.running;
     }
@@ -46,7 +47,7 @@ player.update = function(context){
         this.direction = -1;
     }
     if(keydown[KEYBOARD.KEY_LEFT]){
-        this.x--;
+        this.x -= this.speed;
         let map = {
             '-1' : '6',
             '0' : '7',
@@ -57,7 +58,7 @@ player.update = function(context){
         this.animation = this.running;
     }
     else if(keydown[KEYBOARD.KEY_RIGHT]){
-        this.x++;
+        this.x += this.speed;
 
          let map = {
             '-1' : '2',
