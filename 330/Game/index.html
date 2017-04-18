@@ -67,24 +67,54 @@
             }
 
             window.onload = () => {
-            let player = sprite({
-                filename : "./base/graphics/entity/player/player-basic-idle.png",      
-                width : 53,
-                height : 73,
-                direction_count : 8,
-                frame_count : 22,
-                animation_speed : 0.15,
-                shift : [0, -0.5]
+                //TODO: player should be in its own file and the animation/sprites should also be separated
+                let player = {
+                    x: 0,
+                    y: 0
+                };
+                player.idle = sprite({
+                    filename : "./base/graphics/entity/player/player-basic-idle.png",      
+                    width : 53,
+                    height : 73,
+                    direction_count : 8,
+                    frame_count : 22,
+                    animation_speed : 0.15,
+                    shift : [0, -0.5]
                 });
-            player.loadImage();
-            let context = document.getElementById('canvas1').getContext('2d');
-            function gameloop(){
-                player.update();
-                player.clear(context);
-                player.render({context: context, row: 3});
-                window.requestAnimationFrame(gameloop);
-            }
-            gameloop();
+                player.running = sprite({
+                    filename : "./base/graphics/entity/player/player-basic-run.png",
+                    width : 48,
+                    height : 71,
+                    frame_count : 22,
+                    direction_count : 8,
+                    shift : [0, -0.484375],
+                    //distance_per_frame : 0.35,
+                    animation_speed : 0.60
+                });
+                player.update = function(){
+                    this.animation = this.idle;
+                    //TODO: fix the nested key atrosity
+                    if(app.myKeys.keydown[app.myKeys.KEYBOARD.KEY_UP]){
+                        this.y--;
+                        this.animation = this.running;
+                    }
+                    this.animation.update();
+                    //this.sprite.update();
+                };
+                player.render = function(){
+                    this.animation.clear(context);
+                    this.animation.render({context: context, row: 3, x: this.x, y: this.y});
+                };
+                //TODO: better asset loading
+                player.idle.loadImage();
+                player.running.loadImage();
+                let context = document.getElementById('canvas1').getContext('2d');
+                function gameloop(){
+                    player.update();
+                    player.render(context);
+                    window.requestAnimationFrame(gameloop);
+                }
+                gameloop();
             };
             
         </script>
