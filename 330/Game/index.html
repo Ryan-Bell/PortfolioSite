@@ -4,6 +4,8 @@
         <title>HTML Canvas Game</title>
         <style>
             html, body {
+                padding: 0px;
+                margin: 0px;
                 overflow: hidden;
             }
         </style>
@@ -43,8 +45,10 @@
                                 o.frame = 0;
                         }
                     },
-                    clear : function(context){
-                        context.clearRect(0,0,o.width, o.height);
+                    clear : function(ops){
+                        ops.x = ops.x || 0;
+                        ops.y = ops.y || 0;
+                        ops.context.clearRect(ops.x, ops.y, o.width, o.height);
                     },
                     render : function(ops){
                         ops.x = ops.x || 0;
@@ -67,10 +71,15 @@
             }
 
             window.onload = () => {
+                let canvas = document.getElementById('canvas1');
+                resize(canvas);
+                let context = canvas.getContext('2d');
+
                 //TODO: player should be in its own file and the animation/sprites should also be separated
                 let player = {
-                    x: 0,
-                    y: 0
+                    x: canvas.width/2,
+                    y: canvas.height/2,
+                    direction: 0
                 };
                 player.idle = sprite({
                     filename : "./base/graphics/entity/player/player-basic-idle.png",      
@@ -91,26 +100,39 @@
                     //distance_per_frame : 0.35,
                     animation_speed : 0.60
                 });
+                player.animation = player.idle;
+
                 player.update = function(){
-                    this.animation = this.idle;
+                    //erase old player before updating position
+                    this.animation.clear({context: context, x: this.x, y: this.y});
+                    
                     //TODO: fix the nested key atrosity
-                    if(app.myKeys.keydown[app.myKeys.KEYBOARD.KEY_UP]){
+                    if(keydown[KEYBOARD.KEY_UP]){
                         this.y--;
+                        this.direction = 0;
                         this.animation = this.running;
                     }
+                    else if(keydown[KEYBOARD.KEY_DOWN]){
+                        this.y++;
+                        this.direction = 4;
+                        this.animation = this.running;
+                    }
+                    else {
+                       this.animation = this.idle; 
+                    }
                     this.animation.update();
-                    //this.sprite.update();
                 };
                 player.render = function(){
-                    this.animation.clear(context);
-                    this.animation.render({context: context, row: 3, x: this.x, y: this.y});
+                    this.animation.render({context: context, row: this.direction, x: this.x, y: this.y});
                 };
                 //TODO: better asset loading
                 player.idle.loadImage();
                 player.running.loadImage();
-                let context = document.getElementById('canvas1').getContext('2d');
+
+
+                
                 function gameloop(){
-                    player.update();
+                    player.update(context);
                     player.render(context);
                     window.requestAnimationFrame(gameloop);
                 }

@@ -2,13 +2,8 @@
 // really easy to reuse between projects
 
 "use strict";
-var app = app || {};
 
-//start IIFE
-app.myKeys = function(){
-	var myKeys = {};
-
-	myKeys.KEYBOARD = Object.freeze({
+let KEYBOARD = Object.freeze({
 		"KEY_LEFT": 37, 
 		"KEY_UP": 38, 
 		"KEY_RIGHT": 39, 
@@ -16,6 +11,11 @@ app.myKeys = function(){
 		"KEY_SPACE": 32,
 		"KEY_SHIFT": 16
 	});
+//TODO: finish refactoring this...
+let keydown = function(){
+	var myKeys = {};
+
+	
 
 	// myKeys.keydown array to keep track of which keys are down
 	// this is called a "key daemon"
@@ -33,6 +33,7 @@ app.myKeys = function(){
 		myKeys.keydown[e.keyCode] = false;
 		
 		// pausing and resuming
+        /*
 		var char = String.fromCharCode(e.keyCode);
 		if (char == "p" || char == "P"){
 			if (app.main.paused){
@@ -41,7 +42,8 @@ app.myKeys = function(){
 				app.main.pauseGame();
 			}
 		}
+        */
 	});
 	
-	return myKeys;
+	return myKeys.keydown;
 }();
