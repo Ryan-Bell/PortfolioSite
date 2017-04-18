@@ -13,11 +13,14 @@ function createMap(){
         [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1],
         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
     ];
+    map.frames = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
     map.render = function(context){
         //TODO: temp
         let tilesize = 64;
         map.tiles.forEach(function(y, yi){
             y.forEach(function(x, xi){
+                map.frames[xi][yi] = map.frames[xi][yi] || getRandomInt(0, map[x].frame_count - 1);
+                map[x].frame = map.frames[xi][yi];
                 map[x].render({context: context, x: xi * tilesize, y: yi * tilesize});
             });
         });
