@@ -30,9 +30,10 @@ function sprite(options){
             ops.x = ops.x || 0;
             ops.y = ops.y || 0;
             ops.row = ops.row || 0;
+            ops.frame = ops.frame || o.frame;
             ops.context.drawImage(
                 o.img,
-                o.frame * o.width,
+                ops.frame * o.width,
                 ops.row * o.height,
                 o.width,
                 o.height,

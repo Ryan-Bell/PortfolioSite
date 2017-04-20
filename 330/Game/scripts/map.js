@@ -20,8 +20,8 @@ function createMap(){
         map.tiles.forEach(function(y, yi){
             y.forEach(function(x, xi){
                 map.frames[xi][yi] = map.frames[xi][yi] || getRandomInt(0, map[x].frame_count - 1);
-                map[x].frame = map.frames[xi][yi];
-                map[x].render({context: context, x: xi * tilesize, y: yi * tilesize});
+                
+                map[x].render({context: context, x: xi * tilesize, y: yi * tilesize, frame: map.frames[xi][yi]});
             });
         });
     }
