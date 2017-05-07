@@ -32,12 +32,12 @@ player.update = function(context){
     
     
     this.animation = this.idle; 
-    if(keydown[KEYBOARD.KEY_UP]){
+    if(keydown[KEYBOARD.KEY_UP] || keydown[KEYBOARD.KEY_W]){
         this.y -= this.speed;
         this.direction = 0;
         this.animation = this.running;
     }
-    else if(keydown[KEYBOARD.KEY_DOWN]){
+    else if(keydown[KEYBOARD.KEY_DOWN] || keydown[KEYBOARD.KEY_S]){
         this.y +=  this.speed;
         this.direction = 4;
         this.animation = this.running;
@@ -46,7 +46,7 @@ player.update = function(context){
     else{
         this.direction = -1;
     }
-    if(keydown[KEYBOARD.KEY_LEFT]){
+    if(keydown[KEYBOARD.KEY_LEFT] || keydown[KEYBOARD.KEY_A]){
         this.x -= this.speed;
         let map = {
             '-1' : '6',
@@ -57,7 +57,7 @@ player.update = function(context){
         
         this.animation = this.running;
     }
-    else if(keydown[KEYBOARD.KEY_RIGHT]){
+    else if(keydown[KEYBOARD.KEY_RIGHT] || keydown[KEYBOARD.KEY_D]){
         this.x += this.speed;
 
          let map = {
