@@ -1,6 +1,7 @@
 <!DOCTYPE>
 <html>
 	<head>
+	<meta charset="UTF-8">
 	<title>HTML Canvas Game</title>
 		<style>
 			html, body {
@@ -17,18 +18,13 @@
 		<script src='utils/helper.js'></script>
 		<script src='utils/keys.js'></script>
 		<script src='utils/animation.js'></script>
+		<script src='scripts/content.js'></script>
 		<script src='scripts/map.js'></script>
 		<script src='scripts/player.js'></script>
 		<script>
 			function resize(canvas){
 				canvas.width = window.innerWidth;
 				canvas.height = window.innerHeight;
-			}
-
-			function loadImage(path){
-				var img = new Image();
-				img.src = path;
-				return img;
 			}
 
 			window.onload = () => {
@@ -42,31 +38,8 @@
 
 				let player = createPlayer(canvas1.width/2, canvas1.height/2);
 				let map = createMap();
-				map[0] = sprite({
-					filename : "./base/graphics/terrain/grass/grass2.png",
-					width : 64,
-					height : 64,
-					direction_count : 1,
-					frame_count : 20,
-					animation_speed : 0.0
-				});
-				map[1] = sprite({
-					filename : "./base/graphics/terrain/dirt/dirt2.png",
-					width : 64,
-					height : 64,
-					direction_count : 1,
-					frame_count : 30,
-					animation_speed : 0.0
-				});
 
-				//TODO: better asset loading
-				player.idle.loadImage();
-				player.running.loadImage();
-
-				map[0].loadImage();
-				map[1].loadImage();
-
-
+				content.loadAll();
 				function gameloop(){
 					player.update(context1);
 					player.render(context1);

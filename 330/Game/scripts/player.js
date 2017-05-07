@@ -5,25 +5,8 @@
     direction: 0,
     speed : 3.5
 };
-player.idle = sprite({
-    filename : "./base/graphics/entity/player/player-basic-idle.png",      
-    width : 53,
-    height : 73,
-    direction_count : 8,
-    frame_count : 22,
-    animation_speed : 0.15,
-    shift : [0, -0.5]
-});
-player.running = sprite({
-    filename : "./base/graphics/entity/player/player-basic-run.png",
-    width : 48,
-    height : 71,
-    frame_count : 22,
-    direction_count : 8,
-    shift : [0, -0.484375],
-    //distance_per_frame : 0.35,
-    animation_speed : 0.60
-});
+player.idle = content['player-basic-idle'];
+player.running = content['player-basic-run'];
 player.animation = player.idle;
 
 player.update = function(context){
