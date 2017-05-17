@@ -2,6 +2,7 @@ function createMap(){
 	const mapx = 20;
 	const mapy = 20;
 	const tilesize = 64;
+	const halftile = tilesize / 2;
 
 	let map = {};
 	map.content = [];
@@ -31,6 +32,51 @@ function createMap(){
 				let tile = x;
 				map.content[tile.value].frame = tile.frame;
 				map.content[tile.value].render({context: context, x: xi * tilesize, y: yi * tilesize});
+			});
+		});
+		//second pass for the overlays
+		map.tiles.forEach(function(y, yi){
+			y.forEach(function(x, xi){
+				let tile = x;
+				if(tile.value == 0) return;
+
+				let tilex1 = xi * tilesize;
+				let tiley1 = yi * tilesize;
+
+				//because they are only half the width of a full tile
+				let tilex2 = tilex1 + halftile;
+				let tiley2 = tiley1 + halftile;
+
+				//place edges	
+				//This will no work because it will change every frame
+				//content['dirt-side'].frame = getRandomInt(0, content['dirt-side'].frame_count - 1);
+				
+				//bottom
+				content['dirt-side'].render({context: context, x: tilex1, y: tiley1 + tilesize, row: 0});
+				content['dirt-side'].render({context: context, x: tilex2, y: tiley1 + tilesize, row: 0});
+
+				//top
+				content['dirt-side'].render({context: context, x: tilex1, y: tiley1 - halftile, row: 2});
+				content['dirt-side'].render({context: context, x: tilex2, y: tiley1 - halftile, row: 2});
+
+				//left
+				content['dirt-side'].render({context: context, x: tilex1 - halftile, y: tiley1, row: 1});
+				content['dirt-side'].render({context: context, x: tilex1 - halftile, y: tiley2, row: 1});
+
+				//right
+				content['dirt-side'].render({context: context, x: tilex1 + tilesize, y: tiley1, row: 3});
+				content['dirt-side'].render({context: context, x: tilex1 + tilesize, y: tiley2, row: 3});
+
+
+				//corners
+				//lower left
+				content['dirt-outer-corner'].render({context: context, x: tilex1 - halftile, y: tiley1 + tilesize, row: 0});
+				//upper left
+				content['dirt-outer-corner'].render({context: context, x: tilex1 - halftile, y: tiley1 - halftile, row: 1});
+				//upper right
+				content['dirt-outer-corner'].render({context: context, x: tilex1 + tilesize, y: tiley1 - halftile, row: 2});
+				//lower right
+				content['dirt-outer-corner'].render({context: context, x: tilex1 + tilesize, y: tiley1 + tilesize, row: 3});
 			});
 		});
 	}

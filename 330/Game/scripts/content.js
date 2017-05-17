@@ -18,6 +18,33 @@ content['dirt2'] = sprite({
 	animation_speed : 0.0
 });
 
+content['dirt-inner-corner'] = sprite({
+	filename : "./base/graphics/terrain/dirt/dirt-inner-corner.png",
+	width : 32,
+	height : 32,
+	direction_count : 4,
+	frame_count : 8,
+	animation_speed : 0.0
+});
+
+content['dirt-outer-corner'] = sprite({
+	filename : "./base/graphics/terrain/dirt/dirt-outer-corner.png",
+	width : 32,
+	height : 32,
+	direction_count : 4,
+	frame_count : 8,
+	animation_speed : 0.0
+});
+
+content['dirt-side'] = sprite({
+	filename : "./base/graphics/terrain/dirt/dirt-side.png",
+	width : 32,
+	height : 32,
+	direction_count : 4,
+	frame_count : 8,
+	animation_speed : 0.0
+});
+
 content['player-basic-idle'] = sprite({
     filename : "./base/graphics/entity/player/player-basic-idle.png",      
     width : 53,
