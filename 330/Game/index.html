@@ -15,6 +15,7 @@
 				left: 0;
 			}
 		</style>
+		<script src='utils/perlin.js'></script>
 		<script src='utils/helper.js'></script>
 		<script src='utils/keys.js'></script>
 		<script src='utils/animation.js'></script>
@@ -28,6 +29,8 @@
 			}
 
 			window.onload = () => {
+				noise.seed(Math.random());
+
 				let canvas1 = document.getElementById('canvas1');
 				resize(canvas1);
 				let context1 = canvas1.getContext('2d');
@@ -40,10 +43,10 @@
 				let map = createMap();
 
 				content.loadAll();
+				map.render(context2);
 				function gameloop(){
 					player.update(context1);
 					player.render(context1);
-					map.render(context2);
 					window.requestAnimationFrame(gameloop);
 				}
 				gameloop();
