@@ -10,7 +10,7 @@ function sprite(options){
         frame : 0,
         tick : 0,
         img : undefined,
-        loadImage : function(){
+        load : function(){
             o.img = loadImage(o.filename);
         },
         //TODO: this needs to be time based and the animation speed may be off
