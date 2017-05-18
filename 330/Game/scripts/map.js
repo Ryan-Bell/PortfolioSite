@@ -1,6 +1,6 @@
 function createMap(){
-	const mapx = 20;
-	const mapy = 20;
+	const mapx = 50;
+	const mapy = 50;
 	const tilesize = 64;
 	const halftile = tilesize / 2;
 
@@ -8,6 +8,9 @@ function createMap(){
 	map.content = [];
 	map.content[0] = content['grass2'];
 	map.content[1] = content['dirt2'];
+
+	map.xOffset = 0;
+	map.yOffset = 0;
 
 	map.tiles = [];
 
@@ -26,15 +29,63 @@ function createMap(){
 		}
 	}
 
-	map.render = function(context){
+	map.render = function(context, player){
+		map.render.lastx = map.render.lastx || player.x;
+		map.render.lasty = map.render.lasty || player.y;
+
+		if(map.render.lastx == player.x && map.render.lasty == player.y) return;
+
+		let canvWidth = context.canvas.width;
+		let canvHeight = context.canvas.height;
+		let buffer = tilesize * 3;
+
+		if(player.x < buffer){
+			if(map.xOffset - player.speed >= 0){
+				map.xOffset -= player.speed;
+				player.x += player.speed;
+				map.draw(context);
+			}
+		}
+
+		if(player.x > canvWidth - buffer){
+			if(map.xOffset + player.speed + canvWidth <= mapx * tilesize){
+				map.xOffset += player.speed;
+				player.x -= player.speed;
+				map.draw(context);
+
+			}
+		}
+
+		if(player.y < buffer){
+			if(map.yOffset - player.speed >= 0){
+				map.yOffset -= player.speed;
+				player.y += player.speed;
+				map.draw(context);
+			}
+		}
+
+		if(player.y > canvHeight - buffer){
+			if(map.yOffset + player.speed + canvHeight <= mapy * tilesize){
+				map.yOffset += player.speed;
+				player.y -= player.speed;
+				map.draw(context);
+
+			}
+		}
+
+		map.render.lastx = player.x;
+		map.render.lasty = player.y;
+	};
+
+	map.draw = function(context, frills){
 		for (var x = 0; x < mapx; x++) {
 			for (var y = 0; y < mapy; y++) {
 				let tile = map.tiles[x][y];
 				map.content[tile.value].frame = tile.frame;
-				map.content[tile.value].render({context: context, x: x * tilesize, y: y * tilesize});
+				map.content[tile.value].render({context: context, x: x * tilesize - map.xOffset, y: y * tilesize - map.yOffset});
 			}
 		}
-
+		if(!frills) return;
 		//second pass for the overlays
 		for (var x = 0; x < mapx; x++) {
 			for (var y = 0; y < mapy; y++) {

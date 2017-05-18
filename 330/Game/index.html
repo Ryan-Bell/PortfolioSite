@@ -43,9 +43,10 @@
 				let map = createMap();
 
 				content.loadAll();
-				map.render(context2);
+				map.draw(context2);
 				function gameloop(){
 					player.update(context1);
+					map.render(context2, player);
 					player.render(context1);
 					window.requestAnimationFrame(gameloop);
 				}

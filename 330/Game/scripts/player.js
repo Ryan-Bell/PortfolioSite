@@ -3,7 +3,7 @@
     x: x,
     y: y,
     direction: 0,
-    speed : 3.5
+    speed : 4
 };
 player.idle = content['player-basic-idle'];
 player.running = content['player-basic-run'];
