@@ -2,10 +2,10 @@
 
 ## 1. Media Requirements: (20%)  
 ### Sound (required on game only):
-- [ ] A background sound that loops  
-- [ ] Effect sounds  
-- [ ] Keep your sound file sizes as small as possible. Primarily use MP3's; WAV's are OK for short sound effects  
-- [ ] DO NOT use the sounds that were given to you in class  
+- [x] A background sound that loops  
+- [x] Effect sounds  
+- [x] Keep your sound file sizes as small as possible. Primarily use MP3's; WAV's are OK for short sound effects  
+- [x] DO NOT use the sounds that were given to you in class  
 ### Images:  
 - [x] Consistent theme or style  
 - [x] Optimized bitmap Graphics (JPEG or PNG) must be used, NOT BMP, TIFF, and so on  

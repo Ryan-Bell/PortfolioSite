@@ -14,11 +14,22 @@
 				top: 0;
 				left: 0;
 			}
+			audio {
+				display: none;
+			}
 		</style>
+	</head>
+	<body>
+		<canvas id="canvas2"></canvas>
+		<canvas id="canvas1"></canvas>
+		<audio id="bgAudio" src="./base/sounds/are-we-alone.mp3"></audio>
+		<audio id="effectAudio"></audio>
+
 		<script src='utils/perlin.js'></script>
 		<script src='utils/helper.js'></script>
 		<script src='utils/keys.js'></script>
 		<script src='utils/animation.js'></script>
+		<script src='utils/sound.js'></script>
 		<script src='scripts/content.js'></script>
 		<script src='scripts/map.js'></script>
 		<script src='scripts/player.js'></script>
@@ -38,6 +49,11 @@
 				let canvas2 = document.getElementById('canvas2');
 				resize(canvas2);
 				let context2 = canvas2.getContext('2d');
+				
+				canvas1.onmousedown = function(e){
+					sound.playEffect();					
+				}
+				sound.playBGAudio();
 
 				let player = createPlayer(canvas1.width/2, canvas1.height/2);
 				let map = createMap();
@@ -59,9 +75,5 @@
 			};
 
 		</script>
-	</head>
-	<body>
-		<canvas id="canvas2"></canvas>
-		<canvas id="canvas1"></canvas>
 	</body>
 </html>
