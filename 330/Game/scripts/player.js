@@ -3,7 +3,8 @@ function createPlayer(x,y){
 		x: x,
 		y: y,
 		direction: 0,
-		speed : 4
+		speed : 4,
+		health: 100
 	};
 	player.idle = content['player-basic-idle'];
 	player.running = content['player-basic-run'];

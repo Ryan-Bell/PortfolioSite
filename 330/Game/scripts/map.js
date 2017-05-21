@@ -30,7 +30,6 @@ function createMap(){
 	}
 
 	map.render = function(context, player){
-		content['worm-attack-01'].update().render({context: context, x: 50,y: 50, row:0});
 		map.render.lastx = map.render.lastx || player.x;
 		map.render.lasty = map.render.lasty || player.y;
 

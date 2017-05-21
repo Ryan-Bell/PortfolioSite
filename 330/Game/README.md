@@ -11,8 +11,8 @@
 - [x] Optimized bitmap Graphics (JPEG or PNG) must be used, NOT BMP, TIFF, and so on  
 - [x] DO NOT use the graphics that were given to you in class  
 ### Text/Fonts:  
-- [ ] Text must be displayed in theme appropriate embedded Web Fonts - Times New Roman need not apply!  
-- [ ] Size the text so that it is easy to read  
+- [x] Text must be displayed in theme appropriate embedded Web Fonts - Times New Roman need not apply!  
+- [x] Size the text so that it is easy to read  
 ### Canvas Drawing/Animation:
 - [x] Most or all of the game/experience will be drawn into an HTML5 <canvas> element utilizing the Canvas 2D drawing API.  
 - [x] Must draw an image on the canvas (HTML5 Canvas Image Tutorial)  
@@ -38,10 +38,10 @@
 - [ ] Mouse and onscreen UI buttons preferred over interface keyboard shortcuts. The easiest way to do this is an absolute positioned <button> tag over the canvas element. Alternatively, you can create "canvas buttons" by drawing a rounded rectangle "button" into the canvas.  
 ### Game only Requirement - Screens  
 At a bare minimum there should be three screens (i.e. states):  
-- [ ] Title/Intro/Instructions screen or screens  
-- [ ] Main game screen  
-- [ ] Game over/Play Again? screen  
-- [ ] Important! Put your name somewhere in the project so that it is visible to the user. A game will have your name either on a title screen or game over screen.  
+- [x] Title/Intro/Instructions screen or screens  
+- [x] Main game screen  
+- [x] Game over/Play Again? screen  
+- [x] Important! Put your name somewhere in the project so that it is visible to the user. A game will have your name either on a title screen or game over screen.  
 
 ## 4. Experience/Game Design Requirements (20%)  
 ### Meeting your plan:  

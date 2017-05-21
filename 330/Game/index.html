@@ -19,6 +19,7 @@
 			}
 		</style>
 	</head>
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet"> 
 	<body>
 		<canvas id="canvas2"></canvas>
 		<canvas id="canvas1"></canvas>
@@ -34,6 +35,11 @@
 		<script src='scripts/map.js'></script>
 		<script src='scripts/player.js'></script>
 		<script>
+			const GAMESTATE_MENU = 0;
+			const GAMESTATE_MAIN = 1;
+			const GAMESTATE_DEATH = 2;
+
+			let gameState = GAMESTATE_MENU;
 			function resize(canvas){
 				canvas.width = window.innerWidth;
 				canvas.height = window.innerHeight;
@@ -53,6 +59,10 @@
 				
 				canvas1.onmousedown = function(e){
 					sound.playEffect();					
+					if(gameState == GAMESTATE_MENU){
+						gameState = GAMESTATE_MAIN;
+						context1.clearRect(0,0,canvas1.width, canvas1.height);
+					}
 				}
 				sound.playBGAudio();
 
@@ -75,11 +85,30 @@
 				//draw the map once on the background canvas
 				map.draw(context2);
 				function gameloop(){
-					player.update(context1);
+					if(gameState == GAMESTATE_MENU){
+						context1.font = '180px Titillium Web';
+						context1.fillStyle = 'orange';
+						context1.textAlign = 'center';
+						context1.fillText("Bug Shooter", canvas1.width/2, canvas1.height/2);
+						context1.font = '80px Titillium Web';
+						context1.fillText("Ryan Bell", canvas1.width/2, canvas1.height/2 + 200);
+						context1.font = '40px Titillium Web';
+						context1.fillText("WASD or Arrows to move, mouse to shoot", canvas1.width/2, canvas1.height/2 + 400);
 
-					//pass the player to canvas so it can decide whether it needs to move and redraw or not
-					map.render(context2, player);
-					player.render(context1);
+					} else if(gameState == GAMESTATE_MAIN){
+						player.update(context1);
+
+						//pass the player to canvas so it can decide whether it needs to move and redraw or not
+						map.render(context2, player);
+						player.render(context1);
+						player.health--;
+						if(player.health <= 0) gameState = GAMESTATE_DEATH;
+					} else if(gameState == GAMESTATE_DEATH) {
+						context1.font = '180px Titillium Web';
+						context1.fillStyle = 'orange';
+						context1.textAlign = 'center';
+						context1.fillText("You Died", canvas1.width/2, canvas1.height/2);
+					}
 					animationID = window.requestAnimationFrame(gameloop);
 				}
 				gameloop();
