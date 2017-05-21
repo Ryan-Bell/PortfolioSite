@@ -19,19 +19,19 @@
 - [x] Must draw an image animation on the canvas using a Sprite Sheet  
 - [ ] Must draw a particle system to the canvas  
 - [ ] Animations must be smoothed using dt ("delta time")  
-- [ ] Must cancel animations with window.cancelAnimationFrame()  
+- [x] Must cancel animations with window.cancelAnimationFrame()  
 - [x] The project should have visually engaging graphics and effects.  
 - [ ] Use a variety of <canvas> capabilities including the ability to draw paths, bitmaps, gradients, shadows, the globalCompositeOperation property, and so on.  
 
 ## 2. Interaction Requirements (20%)  
 ### Control (game)  
-- [ ] The player should be able to control at least one sprite on the screen using mouse and/or keyboard.  
+- [x] The player should be able to control at least one sprite on the screen using mouse and/or keyboard.  
 - [x] Controls should be easy to use, responsive and intuitive.  
 - [x] Game must have keyboard controls. Map controls to both WASD and arrow keys if appropriate. DO NOT map to PC-only keys like PageUp or the Home key.  
 - [x] Use a "key daemon" array to capture multiple key inputs simultaneously. For example, shift+space may jump higher than a normal jump (space) or shift + an arrow may run faster than just a normal arrow key.  
 
 ## 3. Usability Requirements (20%)  
-- [ ] Experience must pause/unpause with window.onblur and window.onfocus  
+- [x] Experience must pause/unpause with window.onblur and window.onfocus  
 - [ ] Teaching: The player should have no trouble figuring out how to play the game/experience. You should probably provide instructions.  
 - [ ] Feedback: The player should intuitively know what "state" the game/experience is in, and if their actions hindered or helped their progress in the game. A score should be visible to the player.  
 - [ ] Difficulty: Be nice to your players. The game should be easy at first, then it gets harder. The player shouldn't die in 2 seconds like Flappy Birds.  

@@ -26,10 +26,14 @@ let sound = (function(){
 	function playBGAudio(){
 		bgAudio.play();
 	}
+	function pauseBGAudio(){
+		bgAudio.pause();
+	}
 		
 	// export a public interface to this module
 	return {
 		playEffect: playEffect,
-		playBGAudio: playBGAudio
+		playBGAudio: playBGAudio,
+		pauseBGAudio: pauseBGAudio
 	};
 })();

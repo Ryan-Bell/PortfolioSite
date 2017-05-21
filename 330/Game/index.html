@@ -40,6 +40,7 @@
 			}
 
 			window.onload = () => {
+				let animationID;
 				noise.seed(Math.random());
 
 				let canvas1 = document.getElementById('canvas1');
@@ -55,6 +56,16 @@
 				}
 				sound.playBGAudio();
 
+				window.onblur = function(){
+					sound.pauseBGAudio();
+					cancelAnimationFrame(animationID);
+				}
+
+				window.onfocus = function(){
+					sound.playBGAudio();
+					window.requestAnimationFrame(gameloop);
+				}
+
 				let player = createPlayer(canvas1.width/2, canvas1.height/2);
 				let map = createMap();
 
@@ -69,7 +80,7 @@
 					//pass the player to canvas so it can decide whether it needs to move and redraw or not
 					map.render(context2, player);
 					player.render(context1);
-					window.requestAnimationFrame(gameloop);
+					animationID = window.requestAnimationFrame(gameloop);
 				}
 				gameloop();
 			};
