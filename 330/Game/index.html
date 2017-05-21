@@ -42,10 +42,15 @@
 				let player = createPlayer(canvas1.width/2, canvas1.height/2);
 				let map = createMap();
 
+				//preload all sprites and images used in the application
 				content.loadAll();
+
+				//draw the map once on the background canvas
 				map.draw(context2);
 				function gameloop(){
 					player.update(context1);
+
+					//pass the player to canvas so it can decide whether it needs to move and redraw or not
 					map.render(context2, player);
 					player.render(context1);
 					window.requestAnimationFrame(gameloop);

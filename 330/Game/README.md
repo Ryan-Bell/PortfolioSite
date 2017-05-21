@@ -59,7 +59,7 @@ At a bare minimum there should be three screens (i.e. states):
 - [x] Any and all JavaScript Game Engines (Phaser, Lime.js, Impact.js, Quintus.js, etc...) are NOT ALLOWED. *  
 - [x] JS libraries may only be used with prior approval - if you feel you need one, just ask in advance!  
 JS Code:  
-- [ ] Must preload images (See JS Image Slideshow Demo)  
+- [x] Must preload images (See JS Image Slideshow Demo)  
 - [x] Must use object literals  
 - [x] Must use the module pattern  
 - [ ] Must use least 2 new Function constructors (like Bullet, Enemy, ...) that were created by you.  
