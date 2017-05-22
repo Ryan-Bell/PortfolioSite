@@ -47,7 +47,7 @@ At a bare minimum there should be three screens (i.e. states):
 ### Meeting your plan:  
 - [x] It's expected that your game/experience will change from the proposal, but overall you need to create an approximation of what you planned.  
 ### Game Specific Requirements - an "approachable" game:  
-- [ ] Playable by at least one person, has rules, has a win/lose condition?  
+- [x] Playable by at least one person, has rules, has a win/lose condition?  
 - [ ] Do player choices matter?  
 - [ ] Does your game have depth ?  
 - [ ] As the player learns how to play the game can they improve?  

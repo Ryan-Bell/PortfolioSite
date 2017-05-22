@@ -74,14 +74,16 @@
 						for(var i = 0; i < ENEMY_COUNT; i++){
 							enemies[i].checkHit(getMouse(e));
 						}
-						if(checkWin()) gameState = GAMESTATE_WIN;
+						if(checkRemaining() <= 0) gameState = GAMESTATE_WIN;
 					}
 				}
-				function checkWin(){
+				let remaining = ENEMY_COUNT;
+				function checkRemaining(){
+					remaining = ENEMY_COUNT;
 						for(var i = 0; i < ENEMY_COUNT; i++){
-							if(!enemies[i].dead) return false;
+							if(enemies[i].dead) remaining--;
 						}
-					return true;
+					return remaining;
 				}
 				sound.playBGAudio();
 
@@ -116,6 +118,7 @@
 						context1.fillText("WASD or Arrows to move, mouse to shoot", canvas1.width/2, canvas1.height/2 + 400);
 
 					} else if(gameState == GAMESTATE_MAIN){
+						context1.clearRect(0,0,500,500);
 						let dt = calculateDeltaTime() || 0;
 						player.update(context1, dt);
 
@@ -128,6 +131,10 @@
 
 						player.render(context1);
 						player.health = player.health - dt;
+						context1.font = '40px Titillium Web';
+						context1.textAlign = 'left';
+						context1.fillText("Time Left: " + Math.round(player.health), 20, 100);
+						context1.fillText("Enemies Left: " + remaining, 20, 200);
 						if(player.health <= 0) gameState = GAMESTATE_DEATH;
 					} else if(gameState == GAMESTATE_DEATH) {
 						context1.font = '180px Titillium Web';
