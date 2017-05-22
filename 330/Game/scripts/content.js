@@ -81,16 +81,16 @@ content['worm-attack-01'] = sprite({
 	height : 196,
 	frame_count : 8,
 	direction_count : 8,
-	animation_speed : 0.60
+	animation_speed : 2
 });
 
 content['worm-attack-02'] = sprite({
-	filename : "./base/graphics/entity/worm/worm-attack-01.png",
+	filename : "./base/graphics/entity/worm/worm-attack-02.png",
 	width : 248,
 	height : 196,
 	frame_count : 8,
 	direction_count : 8,
-	animation_speed : 0.60
+	animation_speed : 2
 });
 
 content['worm-die'] = sprite({

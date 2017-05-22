@@ -1,14 +1,7 @@
-/**
- * Returns a random number between min (inclusive) and max (exclusive)
- */
 function getRandomArbitrary(min, max) {
 	return Math.random() * (max - min) + min;
 }
 
-/**
- * Returns a random integer between min (inclusive) and max (inclusive)
- * Using Math.round() will give you a non-uniform distribution!
- */
 function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -37,3 +30,25 @@ function calculateDeltaTime(){
 function clamp(val, min, max){
 	return Math.max(min, Math.min(max, val));
 }
+
+function closest (num, arr) {
+	var curr = arr[0];
+	var diff = Math.abs (num - curr);
+	for (var val = 0; val < arr.length; val++) {
+		var newdiff = Math.abs (num - arr[val]);
+		if (newdiff < diff) {
+			diff = newdiff;
+			curr = arr[val];
+		}
+	}
+	return curr;
+}
+
+//expects 2d
+function setMag(vector, mag){
+	let currentMag = Math.sqrt(vector.x * vector.x + vector.y * vector.y);	
+	return {
+		x: vector.x / (currentMag) * mag,
+		y: vector.y / (currentMag) * mag
+	};
+};

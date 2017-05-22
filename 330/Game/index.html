@@ -34,13 +34,16 @@
 		<script src='scripts/content.js'></script>
 		<script src='scripts/map.js'></script>
 		<script src='scripts/player.js'></script>
+		<script src='scripts/enemy.js'></script>
 		<script>
+			const ENEMY_COUNT = 10;
 			const GAMESTATE_MENU = 0;
 			const GAMESTATE_MAIN = 1;
 			const GAMESTATE_DEATH = 2;
 			const GAMESTATE_WIN= 3;
 
 			let gameState = GAMESTATE_MENU;
+			let enemies = [];
 			function resize(canvas){
 				canvas.width = window.innerWidth;
 				canvas.height = window.innerHeight;
@@ -57,6 +60,10 @@
 				let canvas2 = document.getElementById('canvas2');
 				resize(canvas2);
 				let context2 = canvas2.getContext('2d');
+
+				for(var i = 0; i < ENEMY_COUNT; i++){
+					enemies[i] = new Enemy(context1);
+				}
 				
 				canvas1.onmousedown = function(e){
 					sound.playEffect();					
@@ -103,6 +110,11 @@
 
 						//pass the player to canvas so it can decide whether it needs to move and redraw or not
 						map.render(context2, player);
+
+						for(var i = 0; i < ENEMY_COUNT; i++){
+							enemies[i].update(dt, player).as(map.xOffset, map.yOffset).render();
+						}
+
 						player.render(context1);
 						player.health = player.health - dt;
 						if(player.health <= 0) gameState = GAMESTATE_DEATH;

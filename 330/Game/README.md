@@ -32,10 +32,10 @@
 
 ## 3. Usability Requirements (20%)  
 - [x] Experience must pause/unpause with window.onblur and window.onfocus  
-- [ ] Teaching: The player should have no trouble figuring out how to play the game/experience. You should probably provide instructions.  
-- [ ] Feedback: The player should intuitively know what "state" the game/experience is in, and if their actions hindered or helped their progress in the game. A score should be visible to the player.  
-- [ ] Difficulty: Be nice to your players. The game should be easy at first, then it gets harder. The player shouldn't die in 2 seconds like Flappy Birds.  
-- [ ] Mouse and onscreen UI buttons preferred over interface keyboard shortcuts. The easiest way to do this is an absolute positioned <button> tag over the canvas element. Alternatively, you can create "canvas buttons" by drawing a rounded rectangle "button" into the canvas.  
+- [x] Teaching: The player should have no trouble figuring out how to play the game/experience. You should probably provide instructions.  
+- [x] Feedback: The player should intuitively know what "state" the game/experience is in, and if their actions hindered or helped their progress in the game. A score should be visible to the player.  
+- [x] Difficulty: Be nice to your players. The game should be easy at first, then it gets harder. The player shouldn't die in 2 seconds like Flappy Birds.  
+- [x] Mouse and onscreen UI buttons preferred over interface keyboard shortcuts. The easiest way to do this is an absolute positioned <button> tag over the canvas element. Alternatively, you can create "canvas buttons" by drawing a rounded rectangle "button" into the canvas.  
 ### Game only Requirement - Screens  
 At a bare minimum there should be three screens (i.e. states):  
 - [x] Title/Intro/Instructions screen or screens  
@@ -62,4 +62,4 @@ JS Code:
 - [x] Must preload images (See JS Image Slideshow Demo)  
 - [x] Must use object literals  
 - [x] Must use the module pattern  
-- [ ] Must use least 2 new Function constructors (like Bullet, Enemy, ...) that were created by you.  
+- [x] Must use least 2 new Function constructors (like Bullet, Enemy, ...) that were created by you.  
