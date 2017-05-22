@@ -19,7 +19,7 @@
 			}
 		</style>
 	</head>
-	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 	<body>
 		<canvas id="canvas2"></canvas>
 		<canvas id="canvas1"></canvas>
@@ -64,9 +64,9 @@
 				for(var i = 0; i < ENEMY_COUNT; i++){
 					enemies[i] = new Enemy(context1);
 				}
-				
+
 				canvas1.onmousedown = function(e){
-					sound.playEffect();					
+					sound.playEffect();
 					if(gameState == GAMESTATE_MENU){
 						gameState = GAMESTATE_MAIN;
 						context1.clearRect(0,0,canvas1.width, canvas1.height);
