@@ -18,7 +18,7 @@
 - [x] Must draw an image on the canvas (HTML5 Canvas Image Tutorial)  
 - [x] Must draw an image animation on the canvas using a Sprite Sheet  
 - [ ] Must draw a particle system to the canvas  
-- [ ] Animations must be smoothed using dt ("delta time")  
+- [x] Animations must be smoothed using dt ("delta time")  
 - [x] Must cancel animations with window.cancelAnimationFrame()  
 - [x] The project should have visually engaging graphics and effects.  
 - [ ] Use a variety of <canvas> capabilities including the ability to draw paths, bitmaps, gradients, shadows, the globalCompositeOperation property, and so on.  

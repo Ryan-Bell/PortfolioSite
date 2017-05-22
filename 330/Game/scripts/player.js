@@ -1,28 +1,31 @@
+'use strict';
 function createPlayer(x,y){
 	let player = {
 		x: x,
 		y: y,
 		direction: 0,
-		speed : 4,
-		health: 100
+		speed : 200,
+		health: 120,
+		frameMovement: 0
 	};
 	player.idle = content['player-basic-idle'];
 	player.running = content['player-basic-run'];
 	player.animation = player.idle;
 
-	player.update = function(context){
+	player.update = function(context, dt){
 		//erase old player before updating position
 		this.animation.clear({context: context, x: this.x, y: this.y});
+		player.frameMovement = player.speed  * dt;
 
 
 		this.animation = this.idle;
 		if(keydown[KEYBOARD.KEY_UP] || keydown[KEYBOARD.KEY_W]){
-			this.y -= this.speed;
+			this.y -= this.frameMovement;
 			this.direction = 0;
 			this.animation = this.running;
 		}
 		else if(keydown[KEYBOARD.KEY_DOWN] || keydown[KEYBOARD.KEY_S]){
-			this.y +=  this.speed;
+			this.y +=  this.frameMovement;
 			this.direction = 4;
 			this.animation = this.running;
 		}
@@ -31,7 +34,7 @@ function createPlayer(x,y){
 			this.direction = -1;
 		}
 		if(keydown[KEYBOARD.KEY_LEFT] || keydown[KEYBOARD.KEY_A]){
-			this.x -= this.speed;
+			this.x -= this.frameMovement;
 			let map = {
 				'-1' : '6',
 				'0' : '7',
@@ -42,7 +45,7 @@ function createPlayer(x,y){
 			this.animation = this.running;
 		}
 		else if(keydown[KEYBOARD.KEY_RIGHT] || keydown[KEYBOARD.KEY_D]){
-			this.x += this.speed;
+			this.x += this.frameMovement;
 
 			let map = {
 				'-1' : '2',

@@ -26,4 +26,14 @@ function rectangleContainsPoint(rect, point){
 	}
 	return (point.x >= rect.x && point.x <= rect.x + rect.width && point.y >= rect.y && point.y <= rect.y + rect.height);
 }
-
+function calculateDeltaTime(){
+	var now,fps;
+	now = performance.now();
+	fps = 1000 / (now - this.lastTime);
+	fps = clamp(fps, 12, 60);
+	this.lastTime = now;
+	return 1/fps;
+};
+function clamp(val, min, max){
+	return Math.max(min, Math.min(max, val));
+}

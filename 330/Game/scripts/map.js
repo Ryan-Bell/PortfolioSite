@@ -40,34 +40,34 @@ function createMap(){
 		let buffer = tilesize * 3;
 
 		if(player.x < buffer){
-			if(map.xOffset - player.speed >= 0){
-				map.xOffset -= player.speed;
-				player.x += player.speed;
+			if(map.xOffset - player.frameMovement >= 0){
+				map.xOffset -= player.frameMovement;
+				player.x += player.frameMovement;
 				map.draw(context);
 			}
 		}
 
 		if(player.x > canvWidth - buffer){
-			if(map.xOffset + player.speed + canvWidth <= mapx * tilesize){
-				map.xOffset += player.speed;
-				player.x -= player.speed;
+			if(map.xOffset + player.frameMovement + canvWidth <= mapx * tilesize){
+				map.xOffset += player.frameMovement;
+				player.x -= player.frameMovement;
 				map.draw(context);
 
 			}
 		}
 
 		if(player.y < buffer){
-			if(map.yOffset - player.speed >= 0){
-				map.yOffset -= player.speed;
-				player.y += player.speed;
+			if(map.yOffset - player.frameMovement >= 0){
+				map.yOffset -= player.frameMovement;
+				player.y += player.frameMovement;
 				map.draw(context);
 			}
 		}
 
 		if(player.y > canvHeight - buffer){
-			if(map.yOffset + player.speed + canvHeight <= mapy * tilesize){
-				map.yOffset += player.speed;
-				player.y -= player.speed;
+			if(map.yOffset + player.frameMovement + canvHeight <= mapy * tilesize){
+				map.yOffset += player.frameMovement;
+				player.y -= player.frameMovement;
 				map.draw(context);
 
 			}

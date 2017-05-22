@@ -38,6 +38,7 @@
 			const GAMESTATE_MENU = 0;
 			const GAMESTATE_MAIN = 1;
 			const GAMESTATE_DEATH = 2;
+			const GAMESTATE_WIN= 3;
 
 			let gameState = GAMESTATE_MENU;
 			function resize(canvas){
@@ -93,21 +94,28 @@
 						context1.font = '80px Titillium Web';
 						context1.fillText("Ryan Bell", canvas1.width/2, canvas1.height/2 + 200);
 						context1.font = '40px Titillium Web';
+						context1.fillText("Kill all enemies in under 2 mins", canvas1.width/2, canvas1.height/2 + 300);
 						context1.fillText("WASD or Arrows to move, mouse to shoot", canvas1.width/2, canvas1.height/2 + 400);
 
 					} else if(gameState == GAMESTATE_MAIN){
-						player.update(context1);
+						let dt = calculateDeltaTime() || 0;
+						player.update(context1, dt);
 
 						//pass the player to canvas so it can decide whether it needs to move and redraw or not
 						map.render(context2, player);
 						player.render(context1);
-						player.health--;
+						player.health = player.health - dt;
 						if(player.health <= 0) gameState = GAMESTATE_DEATH;
 					} else if(gameState == GAMESTATE_DEATH) {
 						context1.font = '180px Titillium Web';
 						context1.fillStyle = 'orange';
 						context1.textAlign = 'center';
 						context1.fillText("You Died", canvas1.width/2, canvas1.height/2);
+					} else if(gameState == GAMESTATE_WIN) {
+						context1.font = '180px Titillium Web';
+						context1.fillStyle = 'orange';
+						context1.textAlign = 'center';
+						context1.fillText("You Won", canvas1.width/2, canvas1.height/2);
 					}
 					animationID = window.requestAnimationFrame(gameloop);
 				}
