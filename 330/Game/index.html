@@ -70,7 +70,18 @@
 					if(gameState == GAMESTATE_MENU){
 						gameState = GAMESTATE_MAIN;
 						context1.clearRect(0,0,canvas1.width, canvas1.height);
+					} else if(gameState == GAMESTATE_MAIN){
+						for(var i = 0; i < ENEMY_COUNT; i++){
+							enemies[i].checkHit(getMouse(e));
+						}
+						if(checkWin()) gameState = GAMESTATE_WIN;
 					}
+				}
+				function checkWin(){
+						for(var i = 0; i < ENEMY_COUNT; i++){
+							if(!enemies[i].dead) return false;
+						}
+					return true;
 				}
 				sound.playBGAudio();
 
