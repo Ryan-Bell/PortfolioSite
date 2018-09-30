@@ -146,6 +146,20 @@ footer{
 	max-width: 100%;
 	overflow: hidden;
 }
+.github {
+	display: block;
+	margin: 0 auto;
+	width: 40px;
+	padding-bottom: 20px;
+}
+.github:hover {
+	opacity: 0.6;
+	filter: alpha(opacity=60); /* internet explorer */
+	transition: opacity .14s ease-out;
+    -moz-transition: opacity .14s ease-out;
+    -webkit-transition: opacity .14s ease-out;
+    -o-transition: opacity .14s ease-out;
+}
 
 @media screen and (max-width:860px){
 	.portfolio-thumb {
